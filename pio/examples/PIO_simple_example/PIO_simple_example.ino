@@ -6,16 +6,15 @@
  * 
  */
 
-#define F_CPU 1000000
-
-#include <util/delay.h>
-
 #include "pio.h"
 
-#define LED    A0 // define a fellow LED pin
-#define BUTTON D4 // define a button pin
+// define a fellow LED pin
+#define LED    B5
 
-int main() {
+// define a button pin
+#define BUTTON D2
+
+void setup() {
     // set the pin directions
     dMode(LED, OUT);
     dMode(BUTTON, IN);
@@ -28,13 +27,14 @@ int main() {
     
     // wait, until button gets pressed (to ground)
     while(dRead(BUTTON))
-        _delay_ms(1);
-    
-    // blink now the LED
-    while(1) {
-        dWrite(LED, LOW);
-        _delay_ms(250);
-        dWrite(LED, HIGH);
-        _delay_ms(250);
-    }
+        delay(1);
+}
+
+
+void loop() {
+    // blink now LED
+    dWrite(LED, LOW);
+    delay(250);
+    dWrite(LED, HIGH);
+    delay(250);
 }
