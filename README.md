@@ -1,6 +1,32 @@
 # PIO
 Preprocessor I/O Library
 
+## How does it work?
+Instead of the classical way
+```C
+ DDRA |= (1<<PA0); // (1a)
+```
+ you can now write
+```C
+ dMode(A0, OUT);   // (1b)
+```
+It gets directly replaced by the fast PORT manipulation command (1a) using preprocessor macros. This way, PIO does not increase the overall memory consumption or slow down the execution like Arduino does.
+
+## Why using PIO? The Port commands are enough...
+First, the code gets a bit more readable, especially for beginners. Second, you can define pins regardless their corresponding port, resulting in a more flexible code. For instance:
+```C
+/* (2a) */
+#define LED A0
+dMode(LED, OUT);
+dWrite(LED, HIGH);
+```
+If you now choose another pin, the rest of the code can stay the same and PIO will take care of the right PORT commands.
+```C
+/* (2b) */
+#define LED D6     // this changed
+dMode(LED, OUT);   // same command
+dWrite(LED, HIGH); // same command
+```
 ## Installation
 
 ### Pure AVR C code
