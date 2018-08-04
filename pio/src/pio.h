@@ -20,7 +20,7 @@
  *    Instead of the classical way
  *    (1a)   DDRA |= (1<<PA0);
  *    you can now write
- *    (1b)   dMode(PA0, OUT);
+ *    (1b)   dMode(A0, OUT);
  * 
  *    It gets directly replaced by the fast
  *    PORT manipulation command (1a) using
@@ -36,13 +36,13 @@
  *    Second, you can define pins regardless
  *    their corresponding port, resulting in
  *    a more flexible code. For instance:
- *    (2a)   #define LED PA0
+ *    (2a)   #define LED A0
  *           dMode(LED, OUT);
  *           dWrite(LED, HIGH);
  *    If you now choose another pin, the rest
  *    of the code can stay the same and PIO
  *    will take care of the right PORT commands.
- *    (2b)   #define LED PD6    // this changed
+ *    (2b)   #define LED D6     // this changed
  *           dMode(LED, OUT);   // same command
  *           dWrite(LED, HIGH); // same command
  *                             
