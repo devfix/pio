@@ -57,15 +57,15 @@
 #define DWRITE_A5_0 DWRITE_A5_1
 #endif
 #ifdef PA6
-#define DWRITE_A6_1 PORTA |= 0x20
-#define DWRITE_A6_0 PORTA &= 0xDF
+#define DWRITE_A6_1 PORTA |= 0x40
+#define DWRITE_A6_0 PORTA &= 0xBF
 #else
 #define DWRITE_A6_1 # Pin A6 not supported on this MCU!
 #define DWRITE_A6_0 DWRITE_A6_1
 #endif
 #ifdef PA7
-#define DWRITE_A7_1 PORTA |= 0x20
-#define DWRITE_A7_0 PORTA &= 0xDF
+#define DWRITE_A7_1 PORTA |= 0x80
+#define DWRITE_A7_0 PORTA &= 0x7F
 #else
 #define DWRITE_A7_1 # Pin A7 not supported on this MCU!
 #define DWRITE_A7_0 DWRITE_A7_1
@@ -115,15 +115,15 @@
 #define DWRITE_B5_0 DWRITE_B5_1
 #endif
 #ifdef PB6
-#define DWRITE_B6_1 PORTB |= 0x20
-#define DWRITE_B6_0 PORTB &= 0xDF
+#define DWRITE_B6_1 PORTB |= 0x40
+#define DWRITE_B6_0 PORTB &= 0xBF
 #else
 #define DWRITE_B6_1 # Pin B6 not supported on this MCU!
 #define DWRITE_B6_0 DWRITE_B6_1
 #endif
 #ifdef PB7
-#define DWRITE_B7_1 PORTB |= 0x20
-#define DWRITE_B7_0 PORTB &= 0xDF
+#define DWRITE_B7_1 PORTB |= 0x80
+#define DWRITE_B7_0 PORTB &= 0x7F
 #else
 #define DWRITE_B7_1 # Pin B7 not supported on this MCU!
 #define DWRITE_B7_0 DWRITE_B7_1
@@ -173,15 +173,15 @@
 #define DWRITE_C5_0 DWRITE_C5_1
 #endif
 #ifdef PC6
-#define DWRITE_C6_1 PORTC |= 0x20
-#define DWRITE_C6_0 PORTC &= 0xDF
+#define DWRITE_C6_1 PORTC |= 0x40
+#define DWRITE_C6_0 PORTC &= 0xBF
 #else
 #define DWRITE_C6_1 # Pin C6 not supported on this MCU!
 #define DWRITE_C6_0 DWRITE_C6_1
 #endif
 #ifdef PC7
-#define DWRITE_C7_1 PORTC |= 0x20
-#define DWRITE_C7_0 PORTC &= 0xDF
+#define DWRITE_C7_1 PORTC |= 0x80
+#define DWRITE_C7_0 PORTC &= 0x7F
 #else
 #define DWRITE_C7_1 # Pin C7 not supported on this MCU!
 #define DWRITE_C7_0 DWRITE_C7_1
@@ -231,15 +231,15 @@
 #define DWRITE_D5_0 DWRITE_D5_1
 #endif
 #ifdef PD6
-#define DWRITE_D6_1 PORTD |= 0x20
-#define DWRITE_D6_0 PORTD &= 0xDF
+#define DWRITE_D6_1 PORTD |= 0x40
+#define DWRITE_D6_0 PORTD &= 0xBF
 #else
 #define DWRITE_D6_1 # Pin D6 not supported on this MCU!
 #define DWRITE_D6_0 DWRITE_D6_1
 #endif
 #ifdef PD7
-#define DWRITE_D7_1 PORTD |= 0x20
-#define DWRITE_D7_0 PORTD &= 0xDF
+#define DWRITE_D7_1 PORTD |= 0x80
+#define DWRITE_D7_0 PORTD &= 0x7F
 #else
 #define DWRITE_D7_1 # Pin D7 not supported on this MCU!
 #define DWRITE_D7_0 DWRITE_D7_1

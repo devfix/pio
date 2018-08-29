@@ -88,4 +88,6 @@
 #include "pio/dwrite.h"
 #include "pio/dread.h"
 
+#include "pio/mcus.h"
+
 #endif // PIO_H
