@@ -5,7 +5,7 @@
  */
 
 #if !defined(PIOLIB) || PIOLIB < 100
-#error This file should be included directly. Use "pio.h" instead.
+#error This file should not be included directly. Use "pio.h" instead.
 #endif
 
 #ifdef __AVR_ATmega16__

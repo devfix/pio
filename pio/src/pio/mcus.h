@@ -13,6 +13,7 @@
 
 #include "mcus/atmega328p.h"
 #include "mcus/atmega16.h"
+#include "mcus/atmega1284.h"
 
 #ifndef MCU
 #error No compatible MCU header file found.

@@ -13,8 +13,10 @@
 #endif
 
 #ifndef F_I2C
-#error F_I2C not defined!
+#ifndef PIO_DISABLE_I2C
+#warning F_I2C not defined, I2C disabled.
 #endif
+#else
 
 #include <stdlib.h>
 
@@ -72,3 +74,5 @@ void i2cEndTransmission() {
     TWCR = _BV(TWEN) | _BV(TWINT) | _BV(TWSTO);
     while (TWCR & _BV(TWSTO));
 }
+
+#endif
