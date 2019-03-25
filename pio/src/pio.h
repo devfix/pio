@@ -54,6 +54,8 @@
 // current version
 #define PIOLIB 100
 
+#include <avr/io.h>
+
 #ifdef HIGH
 #undef HIGH
 #endif
