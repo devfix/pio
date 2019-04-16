@@ -8,7 +8,7 @@
  * 
  *    Preprocessor I/O Library
  *
- *    ~ version 1.0.0
+ *    ~ version 2.0.0
  *    ~ written by Tristan Krause
  *    ~ visit www.devfix.net
  * 
@@ -52,7 +52,7 @@
 #define PIO_H
 
 // current version
-#define PIOLIB 100
+#define PIOLIB 200
 
 #include <avr/io.h>
 
@@ -89,6 +89,8 @@
 #include "pio/dmode.h"
 #include "pio/dwrite.h"
 #include "pio/dread.h"
+
+#include "pio/ddr.h"
 
 #include "pio/mcus.h"
 

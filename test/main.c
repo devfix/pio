@@ -6,11 +6,9 @@
  * 
  */
 
-#define F_CPU 1000000
-
 #include <util/delay.h>
 
-#include "pio.h"
+#include "../pio/src/pio.h"
 
 #define LED    A0 // define a fellow LED pin
 #define BUTTON D4 // define a button pin
@@ -25,6 +23,10 @@ int main() {
     
     // turn the LED on
     dWrite(LED, HIGH);
+    
+		d(LED) |= LED;
+
+		// DDRA |= 1
     
     // wait, until button gets pressed (to ground)
     while(dRead(BUTTON))
