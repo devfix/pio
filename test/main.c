@@ -6,6 +6,7 @@
  * 
  */
 
+#include <util/delay.h>
 #include "../pio/src/pio.h"
 
 #define LED    A5 // define a fellow LED pin
@@ -13,7 +14,13 @@
 extern void foo();
 
 int main() {
-	d(LED) = b( LED);
-	d(LED) = LED;
+  d(LED) |= LED;
+	while(1)
+  {
+    o(LED) |= LED;
+		_delay_ms(200);
+    o(LED) &= ~LED;
+		_delay_ms(200);
+  }
 	return 0;
 }

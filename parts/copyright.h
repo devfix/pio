@@ -1,16 +1,16 @@
 /***
- *     _______  _____   ___    
- *    |_   __ \|_   _|.'   `.  
- *      | |__) | | | /  .-.  \ 
- *      |  ___/  | | | |   | | 
- *     _| |_    _| |_\  `-'  / 
- *    |_____|  |_____|`.___.'  
+ *     _______  _____   ___
+ *    |_   __ \|_   _|.'   `.
+ *      | |__) | | | /  .-.  \
+ *      |  ___/  | | | |   | |
+ *     _| |_    _| |_\  `-'  /
+ *    |_____|  |_____|`.___.'
  * 
  *    Preprocessor I/O Library
  *
  *    ~ version 2.0.0
  *    ~ written by Tristan Krause
- *    ~ visit www.devfix.net
+ *    ~ visit github.com/devfix/pio
  * 
  *    You should have received a copy of the MIT License.
  *    If not, see <https://opensource.org/licenses/MIT>.
@@ -20,7 +20,7 @@
  *    Instead of the classical way
  *    (1a)   DDRA |= (1<<PA0);
  *    you can now write
- *    (1b)   dMode(A0, OUT);
+ *    (1b)   d(LEAD_A0) |= LEAD_A0;
  * 
  *    It gets directly replaced by the fast
  *    PORT manipulation command (1a) using
@@ -36,14 +36,14 @@
  *    Second, you can define pins regardless
  *    their corresponding port, resulting in
  *    a more flexible code. For instance:
- *    (2a)   #define LED A0
- *           dMode(LED, OUT);
- *           dWrite(LED, HIGH);
+ *    (2a)   #define LED LEAD_A0
+ *           d(LED) |= LED;
+ *           o(LED) |= LED;
  *    If you now choose another pin, the rest
  *    of the code can stay the same and PIO
  *    will take care of the right PORT commands.
- *    (2b)   #define LED D6     // this changed
- *           dMode(LED, OUT);   // same command
- *           dWrite(LED, HIGH); // same command
+ *    (2b)   #define LED LEAD_D6  // this changed
+ *           d(LED) |= LED;       // same command
+ *           o(LED) |= LED;       // same command
  *                             
  */

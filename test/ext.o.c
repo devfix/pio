@@ -192,106 +192,106 @@ typedef struct
 # 642 "/usr/lib/avr/include/avr/io.h" 2 3
 # 55 "../pio/src/pio.h" 2
 # 91 "../pio/src/pio.h"
-static const unsigned char A0 = 1;
+static const unsigned char A0 = 0x01;
 
-static const unsigned char A1 = 2;
+static const unsigned char A1 = 0x02;
 
-static const unsigned char A2 = 4;
+static const unsigned char A2 = 0x04;
 
-static const unsigned char A3 = 8;
+static const unsigned char A3 = 0x08;
 
-static const unsigned char A4 = 16;
+static const unsigned char A4 = 0x10;
 
-static const unsigned char A5 = 32;
+static const unsigned char A5 = 0x20;
 
-static const unsigned char A6 = 64;
+static const unsigned char A6 = 0x40;
 
-static const unsigned char A7 = 128;
-
-
-static const unsigned char B0 = 1;
-
-static const unsigned char B1 = 2;
-
-static const unsigned char B2 = 4;
-
-static const unsigned char B3 = 8;
-
-static const unsigned char B4 = 16;
-
-static const unsigned char B5 = 32;
-
-static const unsigned char B6 = 64;
-
-static const unsigned char B7 = 128;
+static const unsigned char A7 = 0x80;
 
 
-static const unsigned char C0 = 1;
+static const unsigned char B0 = 0x01;
 
-static const unsigned char C1 = 2;
+static const unsigned char B1 = 0x02;
 
-static const unsigned char C2 = 4;
+static const unsigned char B2 = 0x04;
 
-static const unsigned char C3 = 8;
+static const unsigned char B3 = 0x08;
 
-static const unsigned char C4 = 16;
+static const unsigned char B4 = 0x10;
 
-static const unsigned char C5 = 32;
+static const unsigned char B5 = 0x20;
 
-static const unsigned char C6 = 64;
+static const unsigned char B6 = 0x40;
 
-static const unsigned char C7 = 128;
-
-
-static const unsigned char D0 = 1;
-
-static const unsigned char D1 = 2;
-
-static const unsigned char D2 = 4;
-
-static const unsigned char D3 = 8;
-
-static const unsigned char D4 = 16;
-
-static const unsigned char D5 = 32;
-
-static const unsigned char D6 = 64;
-
-static const unsigned char D7 = 128;
+static const unsigned char B7 = 0x80;
 
 
-static const unsigned char E0 = 1;
+static const unsigned char C0 = 0x01;
 
-static const unsigned char E1 = 2;
+static const unsigned char C1 = 0x02;
 
-static const unsigned char E2 = 4;
+static const unsigned char C2 = 0x04;
 
-static const unsigned char E3 = 8;
+static const unsigned char C3 = 0x08;
 
-static const unsigned char E4 = 16;
+static const unsigned char C4 = 0x10;
 
-static const unsigned char E5 = 32;
+static const unsigned char C5 = 0x20;
 
-static const unsigned char E6 = 64;
+static const unsigned char C6 = 0x40;
 
-static const unsigned char E7 = 128;
+static const unsigned char C7 = 0x80;
 
 
-static const unsigned char F0 = 1;
+static const unsigned char D0 = 0x01;
 
-static const unsigned char F1 = 2;
+static const unsigned char D1 = 0x02;
 
-static const unsigned char F2 = 4;
+static const unsigned char D2 = 0x04;
 
-static const unsigned char F3 = 8;
+static const unsigned char D3 = 0x08;
 
-static const unsigned char F4 = 16;
+static const unsigned char D4 = 0x10;
 
-static const unsigned char F5 = 32;
+static const unsigned char D5 = 0x20;
 
-static const unsigned char F6 = 64;
+static const unsigned char D6 = 0x40;
 
-static const unsigned char F7 = 128;
+static const unsigned char D7 = 0x80;
+
+
+static const unsigned char E0 = 0x01;
+
+static const unsigned char E1 = 0x02;
+
+static const unsigned char E2 = 0x04;
+
+static const unsigned char E3 = 0x08;
+
+static const unsigned char E4 = 0x10;
+
+static const unsigned char E5 = 0x20;
+
+static const unsigned char E6 = 0x40;
+
+static const unsigned char E7 = 0x80;
+
+
+static const unsigned char F0 = 0x01;
+
+static const unsigned char F1 = 0x02;
+
+static const unsigned char F2 = 0x04;
+
+static const unsigned char F3 = 0x08;
+
+static const unsigned char F4 = 0x10;
+
+static const unsigned char F5 = 0x20;
+
+static const unsigned char F6 = 0x40;
+
+static const unsigned char F7 = 0x80;
 # 2 "ext.c" 2
 
 

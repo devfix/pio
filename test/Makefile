@@ -12,7 +12,7 @@ COMPILER_PATH = avr-gcc
 # Optionen
 OUTPUT     = main.elf
 MCU	       = atmega16
-CFLAGS     = -Wall -Wextra -std=c11 -O0 -mmcu=$(MCU) -DF_CPU=8000000
+CFLAGS     = -Wall -Wextra -std=c11 -O1 -mmcu=$(MCU) -DF_CPU=8000000
 LDFLAGS    = 
 OBJECTS    = main.o ext.o
 

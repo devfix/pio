@@ -10,7 +10,8 @@ import string
 current_version = 200
 guard = "PIOLIB_H"
 lib_dir = "pio/src/"
-debug = True
+debug = False
+pin_pre = "LEAD_"
 
 code = ""
 
@@ -27,6 +28,7 @@ def create_head():
 def create_pins_h():
     global code
     global debug
+    global pin_pre
     
     if debug:
         code += "// SECTION PINS\n"
@@ -36,8 +38,8 @@ def create_pins_h():
     
     for p in string.ascii_uppercase[:6]:
         for i in range(0, 8):
-            code += "static const unsigned char " + p + str(i) + " = " + ('0x%02x' % (1<<i)) + ";\n"
-            code += "#define B_" + p + str(i) + " " + str(i) +"\n"
+            code += "static const unsigned char " + pin_pre + p + str(i) + " = " + ('0x%02x' % (1<<i)) + ";\n"
+            code += "#define B_" + pin_pre + p + str(i) + " " + str(i) +"\n"
         code += "\n"
     
     code += "\n\n"
@@ -46,6 +48,7 @@ def create_pins_h():
 def create_ddr_h():
     global code
     global debug
+    global pin_pre
     
     if debug:
         code += "// SECTION DDR\n"
@@ -56,8 +59,48 @@ def create_ddr_h():
     for p in string.ascii_uppercase[:6]:
         code += "#ifdef DDR" + p + "\n"
         for i in range(0, 8):
-            code += "  #define DDR_" + p + str(i) + " DDR" + p + "\n"
+            code += "  #define DDR_" + pin_pre + p + str(i) + " DDR" + p + "\n"
         code += "#endif // DDR" + p + "\n\n"
+    
+    code += "\n\n"
+    
+
+def create_port_h():
+    global code
+    global debug
+    global pin_pre
+    
+    if debug:
+        code += "// SECTION PORT\n"
+    
+    code += "#define o(PIN) o_(PIN)\n"
+    code += "#define o_(PIN) PORT ## _ ## PIN\n\n"
+    
+    for p in string.ascii_uppercase[:6]:
+        code += "#ifdef PORT" + p + "\n"
+        for i in range(0, 8):
+            code += "  #define PORT_" + pin_pre + p + str(i) + " PORT" + p + "\n"
+        code += "#endif // PORT" + p + "\n\n"
+    
+    code += "\n\n"
+    
+
+def create_pin_h():
+    global code
+    global debug
+    global pin_pre
+    
+    if debug:
+        code += "// SECTION PORT\n"
+    
+    code += "#define i(PIN) i_(PIN)\n"
+    code += "#define i_(PIN) PIN ## _ ## PIN\n\n"
+    
+    for p in string.ascii_uppercase[:6]:
+        code += "#ifdef PIN" + p + "\n"
+        for i in range(0, 8):
+            code += "  #define PIN_" + pin_pre + p + str(i) + " PIN" + p + "\n"
+        code += "#endif // PIN" + p + "\n\n"
     
     code += "\n\n"
 
@@ -106,6 +149,8 @@ def main():
     append("parts/generic.h")
     create_pins_h()
     create_ddr_h()
+    create_port_h()
+    create_pin_h()
     create_foot()
     
     if not debug:
