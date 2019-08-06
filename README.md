@@ -8,7 +8,8 @@ Instead of the classical way
 ```
  you can now write
 ```C
- dMode(A0, OUT);   // (1b)
+ #define LED LEAD_A0
+ d(LED) |= LED;   // (1b)
 ```
 It gets directly replaced by the fast PORT manipulation command (1a) using preprocessor macros. This way, PIO does not increase the overall memory consumption or slow down the execution like Arduino does.
 
@@ -16,25 +17,26 @@ It gets directly replaced by the fast PORT manipulation command (1a) using prepr
 First, the code gets a bit more readable, especially for beginners. Second, you can define pins regardless their corresponding port, resulting in a more flexible code. For instance:
 ```C
 /* (2a) */
-#define LED A0
-dMode(LED, OUT);
-dWrite(LED, HIGH);
+#define LED LEAD_A0
+d(LED) |= LED;   // set pin of LED as output
+o(LED) |= LED;   // turn LED on
 ```
 If you now choose another pin, the rest of the code can stay the same and PIO will take care of the right PORT commands.
 ```C
 /* (2b) */
-#define LED D6     // this changed
-dMode(LED, OUT);   // same command
-dWrite(LED, HIGH); // same command
+#define LED LEAD_D6 // this changed
+d(LED) |= LED;   // same line
+o(LED) |= LED;   // same line
 ```
 ## Installation
 
 ### Pure AVR C code
-Copy the content of the "pio/src/" directory into your source folder.
+Copy the content of the "pio/src/" directory into your project source folder.
 Include PIO with
 ```C
 #include "pio.h"
 ```
+That's it.
 
 ### Arduino
 This library is compatible with the Arduino framework.
@@ -47,6 +49,8 @@ Restart Arduino, and checkout the example under "file -> examples -> PIO".
 Checkout the menu entry "file -> examples -> PIO" after installation.
 
 ### Pure AVR c code
+
+# POST NEWER EXAMPLE HERE!!!
 
 ```C
 /***

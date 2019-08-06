@@ -9,7 +9,7 @@
 #include <util/delay.h>
 #include "../pio/src/pio.h"
 
-#define LED    A5 // define a fellow LED pin
+#define LED LEAD_A5 // define a fellow LED pin
 
 extern void foo();
 
