@@ -34,7 +34,7 @@ def create_pins_h():
         code += "// SECTION PINS\n"
         
     code += "#define b(PIN) b_(PIN)\n"
-    code += "#define b_(PIN) B ## _ ## PIN\n\n"
+    code += "#define b_(_PIN_) B ## _ ## _PIN_\n\n"
     
     for p in string.ascii_uppercase[:6]:
         for i in range(0, 8):
@@ -54,7 +54,7 @@ def create_ddr_h():
         code += "// SECTION DDR\n"
     
     code += "#define d(PIN) d_(PIN)\n"
-    code += "#define d_(PIN) DDR ## _ ## PIN\n\n"
+    code += "#define d_(_PIN_) DDR ## _ ## _PIN_\n\n"
     
     for p in string.ascii_uppercase[:6]:
         code += "#ifdef DDR" + p + "\n"
@@ -74,7 +74,7 @@ def create_port_h():
         code += "// SECTION PORT\n"
     
     code += "#define o(PIN) o_(PIN)\n"
-    code += "#define o_(PIN) PORT ## _ ## PIN\n\n"
+    code += "#define o_(_PIN_) PORT ## _ ## _PIN_\n\n"
     
     for p in string.ascii_uppercase[:6]:
         code += "#ifdef PORT" + p + "\n"
@@ -94,7 +94,7 @@ def create_pin_h():
         code += "// SECTION PORT\n"
     
     code += "#define i(PIN) i_(PIN)\n"
-    code += "#define i_(PIN) PIN ## _ ## PIN\n\n"
+    code += "#define i_(_PIN_) PIN ## _ ## _PIN_\n\n"
     
     for p in string.ascii_uppercase[:6]:
         code += "#ifdef PIN" + p + "\n"

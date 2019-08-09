@@ -81,7 +81,7 @@
 #endif
 #define INPUT 0
 #define b(PIN) b_(PIN)
-#define b_(PIN) B ## _ ## PIN
+#define b_(_PIN_) B ## _ ## _PIN_
 static const unsigned char LEAD_A0 = 0x01;
 #define B_LEAD_A0 0
 static const unsigned char LEAD_A1 = 0x02;
@@ -179,7 +179,7 @@ static const unsigned char LEAD_F6 = 0x40;
 static const unsigned char LEAD_F7 = 0x80;
 #define B_LEAD_F7 7
 #define d(PIN) d_(PIN)
-#define d_(PIN) DDR ## _ ## PIN
+#define d_(_PIN_) DDR ## _ ## _PIN_
 #ifdef DDRA
 #define DDR_LEAD_A0 DDRA
 #define DDR_LEAD_A1 DDRA
@@ -241,7 +241,7 @@ static const unsigned char LEAD_F7 = 0x80;
 #define DDR_LEAD_F7 DDRF
 #endif // DDRF
 #define o(PIN) o_(PIN)
-#define o_(PIN) PORT ## _ ## PIN
+#define o_(_PIN_) PORT ## _ ## _PIN_
 #ifdef PORTA
 #define PORT_LEAD_A0 PORTA
 #define PORT_LEAD_A1 PORTA
@@ -303,7 +303,7 @@ static const unsigned char LEAD_F7 = 0x80;
 #define PORT_LEAD_F7 PORTF
 #endif // PORTF
 #define i(PIN) i_(PIN)
-#define i_(PIN) PIN ## _ ## PIN
+#define i_(_PIN_) PIN ## _ ## _PIN_
 #ifdef PINA
 #define PIN_LEAD_A0 PINA
 #define PIN_LEAD_A1 PINA
