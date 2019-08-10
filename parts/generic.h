@@ -36,4 +36,4 @@
 #endif
 #define INPUT 0
 
-#define BREAK asm("break\nnop")
+#define BREAKPOINT asm("break\nnop")
