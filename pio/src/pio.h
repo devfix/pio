@@ -8,7 +8,7 @@
 * 
 *    Preprocessor I/O Library
 *
-*    ~ version 2.0.0
+*    ~ version 2.0.1
 *    ~ written by Tristan Krause
 *    ~ visit github.com/devfix/pio
 * 
@@ -80,6 +80,7 @@
 #warning Redefining INPUT...
 #endif
 #define INPUT 0
+#define BREAK asm("break\nnop")
 #define b(PIN) b_(PIN)
 #define b_(_PIN_) B ## _ ## _PIN_
 static const unsigned char LEAD_A0 = 0x01;

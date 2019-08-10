@@ -7,7 +7,7 @@ some macros are pretty redundant, hence a generator script can avoid copy-paste-
 
 import string
 
-current_version = 200
+current_version = 201
 guard = "PIOLIB_H"
 lib_dir = "pio/src/"
 debug = False

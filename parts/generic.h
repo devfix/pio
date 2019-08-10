@@ -35,3 +35,5 @@
   #warning Redefining INPUT...
 #endif
 #define INPUT 0
+
+#define BREAK asm("break\nnop")
