@@ -8,7 +8,7 @@
 * 
 *    Preprocessor I/O Library
 *
-*    ~ version 2.0.1
+*    ~ version 2.0.2
 *    ~ written by Tristan Krause
 *    ~ visit github.com/devfix/pio
 * 
@@ -52,32 +52,44 @@
 #include <avr/io.h>
 #ifdef HIGH
 #undef HIGH
-#warning Redefining HIGH...
+#ifndef PIO_SUPPRESS_REDEFINITION
+#warning Redefining 'HIGH' to '1'
+#endif
 #endif
 #define HIGH 1
 #ifndef LOW
 #undef LOW
-#warning Redefining LOW...
+#ifndef PIO_SUPPRESS_REDEFINITION
+#warning Redefining 'LOW' to '0'
+#endif
 #endif
 #define LOW  0
 #ifndef OUT
 #undef OUT
-#warning Redefining OUT...
+#ifndef PIO_SUPPRESS_REDEFINITION
+#warning Redefining 'OUT' to '1'
+#endif
 #endif
 #define OUT 1
 #ifndef OUTPUT
 #undef OUTPUT
-#warning Redefining OUTPUT...
+#ifndef PIO_SUPPRESS_REDEFINITION
+#warning Redefining 'OUTPUT' to '1'
+#endif
 #endif
 #define OUTPUT 1
 #ifndef IN
 #undef IN
-#warning Redefining IN...
+#ifndef PIO_SUPPRESS_REDEFINITION
+#warning Redefining 'IN' to '0'
+#endif
 #endif
 #define IN 0
 #ifndef INPUT
 #undef INPUT
-#warning Redefining INPUT...
+#ifndef PIO_SUPPRESS_REDEFINITION
+#warning Redefining 'INPUT' to '0'
+#endif
 #endif
 #define INPUT 0
 #define BREAKPOINT asm("break\nnop")
