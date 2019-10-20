@@ -141,21 +141,37 @@ def main():
     global code
     global debug
     
-    print("Starting header generation...")
-    
+    print("Start header generation...")
     append("parts/copyright.h")
+
+    print("Create head...")
     create_head()
+
+    print("Append generic parts...")
     append("parts/generic.h")
+
+    print("Create pin definitions...")
     create_pins_h()
+
+    print("Create ddrs...")
     create_ddr_h()
+
+    print("Create ports...")
     create_port_h()
+
+    print("Create pins...")
     create_pin_h()
+
+    print("Create foot...")
     create_foot()
     
     if not debug:
+        print("Compress whole header...")
         compress()
         
     save(code, lib_dir + "/pio.h")
+
+    print("Job finished.")
 
 if __name__ == "__main__":
     main()

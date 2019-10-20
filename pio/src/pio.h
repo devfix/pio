@@ -8,44 +8,13 @@
 * 
 *    Preprocessor I/O Library
 *
-*    ~ version 2.0.2
+*    ~ version 0.4
 *    ~ written by Tristan Krause
 *    ~ visit github.com/devfix/pio
 * 
 *    You should have received a copy of the MIT License.
 *    If not, see <https://opensource.org/licenses/MIT>.
-* 
-*    How does it work?
-*    ----------------------------------------------
-*    Instead of the classical way
-*    (1a)   DDRA |= (1<<PA0);
-*    you can now write
-*    (1b)   d(LEAD_A0) |= LEAD_A0;
-* 
-*    It gets directly replaced by the fast
-*    PORT manipulation command (1a) using
-*    preprocessor macros. This way, PIO
-*    does not increase the overall memory
-*    consumption or slow down the execution
-*    like Arduino does.
-* 
-*    Why using PIO? The Port commands are enough...
-*    ----------------------------------------------
-*    First, the code gets a bit more readable,
-*    especially for beginners.
-*    Second, you can define pins regardless
-*    their corresponding port, resulting in
-*    a more flexible code. For instance:
-*    (2a)   #define LED LEAD_A0
-*           d(LED) |= LED;
-*           o(LED) |= LED;
-*    If you now choose another pin, the rest
-*    of the code can stay the same and PIO
-*    will take care of the right PORT commands.
-*    (2b)   #define LED LEAD_D6  // this changed
-*           d(LED) |= LED;       // same command
-*           o(LED) |= LED;       // same command
-*                             
+*
 */
 #ifndef PIOLIB_H
 #define PIOLIB_H
@@ -64,13 +33,13 @@
 #endif
 #endif
 #define LOW  0
-#ifndef OUT
-#undef OUT
+#ifndef PIO_OUT
+#undef PIO_OUT
 #ifndef PIO_SUPPRESS_REDEFINITION
-#warning Redefining 'OUT' to '1'
+#warning Redefining 'PIO_OUT' to '1'
 #endif
 #endif
-#define OUT 1
+#define PIO_OUT 1
 #ifndef OUTPUT
 #undef OUTPUT
 #ifndef PIO_SUPPRESS_REDEFINITION
@@ -78,13 +47,13 @@
 #endif
 #endif
 #define OUTPUT 1
-#ifndef IN
-#undef IN
+#ifndef PIO_IN
+#undef PIO_IN
 #ifndef PIO_SUPPRESS_REDEFINITION
-#warning Redefining 'IN' to '0'
+#warning Redefining 'PIO_IN' to '0'
 #endif
 #endif
-#define IN 0
+#define PIO_IN 0
 #ifndef INPUT
 #undef INPUT
 #ifndef PIO_SUPPRESS_REDEFINITION

@@ -16,13 +16,13 @@
 #endif
 #define LOW  0
 
-#ifndef OUT
-  #undef OUT
+#ifndef PIO_OUT
+  #undef PIO_OUT
   #ifndef PIO_SUPPRESS_REDEFINITION
-    #warning Redefining 'OUT' to '1'
+    #warning Redefining 'PIO_OUT' to '1'
   #endif
 #endif
-#define OUT 1
+#define PIO_OUT 1
 
 #ifndef OUTPUT
   #undef OUTPUT
@@ -32,13 +32,13 @@
 #endif
 #define OUTPUT 1
 
-#ifndef IN
-  #undef IN
+#ifndef PIO_IN
+  #undef PIO_IN
   #ifndef PIO_SUPPRESS_REDEFINITION
-    #warning Redefining 'IN' to '0'
+    #warning Redefining 'PIO_IN' to '0'
   #endif
 #endif
-#define IN 0
+#define PIO_IN 0
 
 #ifndef INPUT
   #undef INPUT
