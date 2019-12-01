@@ -14,7 +14,7 @@ Instead of the classical way
 It gets directly replaced by the fast PORT manipulation command (1a) using preprocessor macros. This way, PIO does not increase the overall memory consumption or slow down the execution like Arduino does.
 
 ## Why using PIO? The Port commands are enough...
-First, the code gets a bit more readable, especially for beginners. Second, you can define pins regardless their corresponding port, resulting in a more flexible code. For instance:
+Firstly, the code gets a bit more readable, especially for beginners. Secondly, you can define pins regardless their corresponding port, resulting in a more flexible code. For instance:
 ```C
 /* (2a) */
 #define LED LEAD_A0
