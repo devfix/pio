@@ -17,6 +17,8 @@
  */
 
 struct nil {
+    FORCE_INLINE static void ddr_set() {}
+    FORCE_INLINE static void ddr_clear() {}
     FORCE_INLINE static void port_set() {}
     FORCE_INLINE static void port_clear() {}
 
@@ -29,6 +31,16 @@ struct nil {
 
 template<typename X, typename XS>
 struct cons {
+
+    FORCE_INLINE static void ddr_set() {
+        X().ddr_set();
+        XS().ddr_set();
+    }
+
+    FORCE_INLINE static void ddr_clear() {
+        X().ddr_clear();
+        XS().ddr_clear();
+    }
 
     FORCE_INLINE static void port_set() {
         X().port_set();

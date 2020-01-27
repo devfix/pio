@@ -14,6 +14,8 @@ struct pio_pin;
 #ifdef PORTA
 template<unsigned char L>
 struct pio_pin<'A', L> {
+    FORCE_INLINE static void ddr_set() { DDRA |= L; }
+    FORCE_INLINE static void ddr_clear() { DDRA &= ~L; }
     FORCE_INLINE static void port_set() { PORTA |= L; }
     FORCE_INLINE static void port_clear() { PORTA &= ~L; }
 #ifndef AVR
@@ -28,6 +30,8 @@ struct pio_pin<'A', L> {
 #ifdef PORTB
 template<unsigned char L>
 struct pio_pin<'B', L> {
+    FORCE_INLINE static void ddr_set() { DDRB |= L; }
+    FORCE_INLINE static void ddr_clear() { DDRB &= ~L; }
     FORCE_INLINE static void port_set() { PORTB |= L; }
     FORCE_INLINE static void port_clear() { PORTB &= ~L; }
 #ifndef AVR
@@ -42,6 +46,8 @@ struct pio_pin<'B', L> {
 #ifdef PORTC
 template<unsigned char L>
 struct pio_pin<'C', L> {
+    FORCE_INLINE static void ddr_set() { DDRC |= L; }
+    FORCE_INLINE static void ddr_clear() { DDRC &= ~L; }
     FORCE_INLINE static void port_set() { PORTC |= L; }
     FORCE_INLINE static void port_clear() { PORTC &= ~L; }
 #ifndef AVR
@@ -56,6 +62,8 @@ struct pio_pin<'C', L> {
 #ifdef PORTD
 template<unsigned char L>
 struct pio_pin<'D', L> {
+    FORCE_INLINE static void ddr_set() { DDRD |= L; }
+    FORCE_INLINE static void ddr_clear() { DDRD &= ~L; }
     FORCE_INLINE static void port_set() { PORTD |= L; }
     FORCE_INLINE static void port_clear() { PORTD &= ~L; }
 #ifndef AVR
@@ -70,6 +78,8 @@ struct pio_pin<'D', L> {
 #ifdef PORTE
 template<unsigned char L>
 struct pio_pin<'E', L> {
+    FORCE_INLINE static void ddr_set() { DDRE |= L; }
+    FORCE_INLINE static void ddr_clear() { DDRE &= ~L; }
     FORCE_INLINE static void port_set() { PORTE |= L; }
     FORCE_INLINE static void port_clear() { PORTE &= ~L; }
 #ifndef AVR
@@ -84,6 +94,8 @@ struct pio_pin<'E', L> {
 #ifdef PORTF
 template<unsigned char L>
 struct pio_pin<'F', L> {
+    FORCE_INLINE static void ddr_set() { DDRF |= L; }
+    FORCE_INLINE static void ddr_clear() { DDRF &= ~L; }
     FORCE_INLINE static void port_set() { PORTF |= L; }
     FORCE_INLINE static void port_clear() { PORTF &= ~L; }
 #ifndef AVR
