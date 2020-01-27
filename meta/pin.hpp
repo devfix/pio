@@ -4,7 +4,9 @@
 #include "io.h"
 
 #ifndef AVR
+
 #include <bitset>
+
 #endif
 
 
@@ -18,14 +20,14 @@ struct PortRegister {};
 #ifdef PORTA
 template<>
 struct PortRegister<'A'> {
-    static constexpr auto* value = &PORTA;
+	static constexpr auto *value = &PORTA;
 };
 #endif
 
 #ifdef PORTB
 template<>
 struct PortRegister<'B'> {
-    static constexpr auto* value = &PORTB;
+	static constexpr auto *value = &PORTB;
 };
 #endif
 
@@ -33,7 +35,7 @@ struct PortRegister<'B'> {
 #ifdef PORTC
 template<>
 struct PortRegister<'C'> {
-    static constexpr auto* value = &PORTC;
+	static constexpr auto *value = &PORTC;
 };
 #endif
 
@@ -41,7 +43,7 @@ struct PortRegister<'C'> {
 #ifdef PORTD
 template<>
 struct PortRegister<'D'> {
-    static constexpr auto* value = &PORTD;
+	static constexpr auto *value = &PORTD;
 };
 #endif
 
@@ -50,25 +52,36 @@ struct PortRegister<'D'> {
  */
 
 template<char P, unsigned char L>
-struct pin {
-#ifndef AVR
-    friend std::ostream& operator<<(std::ostream& os, const pin<P, L>& p) {
-        return os << P << std::bitset<8>(L);
-    }
-#endif
+struct pin;
 
-    static void high() {
-        *PortRegister<P>::value |= L;
-    }
-
-	static void low() {
-        *PortRegister<P>::value &= ~L;
-    }
+template<unsigned char L>
+struct pin<'A', L> {
+	static void high() { PORTA |= L; }
+	static void low() { PORTA &= ~L; }
 };
+
+template<unsigned char L>
+struct pin<'B', L> {
+	static void high() { PORTB |= L; }
+	static void low() { PORTB &= ~L; }
+};
+
+template<unsigned char L>
+struct pin<'C', L> {
+	static void high() { PORTC |= L; }
+	static void low() { PORTC &= ~L; }
+};
+
+template<unsigned char L>
+struct pin<'D', L> {
+	static void high() { PORTD |= L; }
+	static void low() { PORTD &= ~L; }
+};
+
 
 template<char P1, unsigned char L1, char P2, unsigned char L2>
 constexpr bool operator<=(pin<P1, L1>, pin<P2, L2>) {
-    return P1 == P2 ? L1 <= L2 : P1 <= P2;
+	return P1 == P2 ? L1 <= L2 : P1 <= P2;
 }
 
 using A0 = pin<'A', 0x01>;
