@@ -6,7 +6,7 @@ __tmp_reg__ = 0
 __zero_reg__ = 1
 	.text
 .global	main
-	.type	main, @function
+	.TYPE	main, @function
 main:
 /* prologue: function */
 /* frame size = 0 */

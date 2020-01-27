@@ -1,4 +1,7 @@
 .idea
+cmake-build-*
+meta/cmake-build-*
+
 
 # Prerequisites
 *.d
