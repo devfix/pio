@@ -1,7 +1,3 @@
-//
-// Created by core on 1/27/20.
-//
-
 #ifndef CONDITIONAL_H
 #define CONDITIONAL_H
 

@@ -5,7 +5,7 @@
 
 #ifdef AVR
 
-#include "pin_lists.hpp"
+#include "library.h"
 
 /**
  * Just a simple test that avr-gcc can handle the template stuff.
@@ -23,7 +23,7 @@ int main()
 #include <functional>
 #include <iostream>
 #include <cassert>
-#include "concat.hpp"
+#include "library.h"
 
 using std::cout;
 using std::endl;
@@ -49,8 +49,9 @@ void testMultiRegOp(
 
 int main()
 {
-    sort_t<build_t<A1, B1, C1, D1, A3, B3, C3, D3, A5, B5, C5, D5, A7, B7, C7, D7>> d;
-    cout << d << endl;
+    PORTA = 0;
+    set_port<A0, A1>();
+    cout << "port: " << (int) PORTA << endl;
 	cout << "Starting tests..." << endl;
 
 	cout << "Test: PORT, set, single group, default zero" << endl;
