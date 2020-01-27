@@ -1,23 +1,16 @@
 #ifndef PINS_PIN_HPP
 #define PINS_PIN_HPP
 
+#include "io.h"
+
 #ifndef AVR
 #include <bitset>
-#else
-#include <avr/io.h>
 #endif
 
 
 /**
  * lookup table + hardware
  */
-
-#ifndef AVR
-unsigned char PORTA{};
-unsigned char PORTB{};
-unsigned char PORTC{};
-unsigned char PORTD{};
-#endif
 
 template<char P>
 struct PortRegister {};
@@ -64,11 +57,11 @@ struct pin {
     }
 #endif
 
-    void high() {
+    static void high() {
         *PortRegister<P>::value |= L;
     }
 
-    void low() {
+	static void low() {
         *PortRegister<P>::value &= ~L;
     }
 };
@@ -78,20 +71,41 @@ constexpr bool operator<=(pin<P1, L1>, pin<P2, L2>) {
     return P1 == P2 ? L1 <= L2 : P1 <= P2;
 }
 
-using A0 = pin<'A', 0x1>;
-using A1 = pin<'A', 0x2>;
-using A2 = pin<'A', 0x4>;
-using A3 = pin<'A', 0x8>;
+using A0 = pin<'A', 0x01>;
+using A1 = pin<'A', 0x02>;
+using A2 = pin<'A', 0x04>;
+using A3 = pin<'A', 0x08>;
 using A4 = pin<'A', 0x10>;
 using A5 = pin<'A', 0x20>;
 using A6 = pin<'A', 0x40>;
 using A7 = pin<'A', 0x80>;
 
-using B0 = pin<'B', 0x1>;
+using B0 = pin<'B', 0x01>;
+using B1 = pin<'B', 0x02>;
+using B2 = pin<'B', 0x04>;
+using B3 = pin<'B', 0x08>;
+using B4 = pin<'B', 0x10>;
+using B5 = pin<'B', 0x20>;
+using B6 = pin<'B', 0x40>;
+using B7 = pin<'B', 0x80>;
 
-using C0 = pin<'C', 0x1>;
+using C0 = pin<'C', 0x01>;
+using C1 = pin<'C', 0x02>;
+using C2 = pin<'C', 0x04>;
+using C3 = pin<'C', 0x08>;
+using C4 = pin<'C', 0x10>;
+using C5 = pin<'C', 0x20>;
+using C6 = pin<'C', 0x40>;
+using C7 = pin<'C', 0x80>;
 
-using D0 = pin<'D', 0x1>;
+using D0 = pin<'D', 0x01>;
+using D1 = pin<'D', 0x02>;
+using D2 = pin<'D', 0x04>;
+using D3 = pin<'D', 0x08>;
+using D4 = pin<'D', 0x10>;
+using D5 = pin<'D', 0x20>;
+using D6 = pin<'D', 0x40>;
+using D7 = pin<'D', 0x80>;
 
 
 #endif //PINS_PIN_HPP

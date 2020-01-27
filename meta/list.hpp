@@ -5,6 +5,7 @@
 #include <ostream>
 #endif
 
+#include "io.h"
 #include "conditional.h"
 
 /**
@@ -12,7 +13,8 @@
  */
 
 struct nil {
-    void high() {}
+    static void high() {}
+	static void low() {}
 
 #ifndef AVR
     friend std::ostream& operator<<(std::ostream& os, const nil&) {
@@ -26,10 +28,15 @@ struct cons {
     using X = A;
     using XS = AS;
 
-    void high() {
+	static void high() {
         A().high();
         XS().high();
     }
+
+	static void low() {
+		A().low();
+		XS().low();
+	}
 
 
 #ifndef AVR
