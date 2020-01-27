@@ -1,6 +1,8 @@
 #ifndef PINS_LIST_HPP
 #define PINS_LIST_HPP
 
+#include "mem.h"
+
 #ifndef AVR
 
 #include <ostream>
@@ -15,16 +17,13 @@
  */
 
 struct nil {
-	static void high() {}
-
-	static void low() {}
+    FORCE_INLINE static void port_set() {}
+    FORCE_INLINE static void port_clear() {}
 
 #ifndef AVR
-
 	friend std::ostream &operator<<(std::ostream &os, const nil &) {
 		return os;
 	}
-
 #endif
 };
 
@@ -33,14 +32,14 @@ struct cons {
 	using X = A;
 	using XS = AS;
 
-	static void high() {
-		A().high();
-		XS().high();
+    FORCE_INLINE static void port_set() {
+		A().port_set();
+		XS().port_set();
 	}
 
-	static void low() {
-		A().low();
-		XS().low();
+    FORCE_INLINE static void port_clear() {
+		A().port_clear();
+		XS().port_clear();
 	}
 
 

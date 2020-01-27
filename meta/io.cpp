@@ -1,5 +1,7 @@
 #include "io.h"
 
+#ifndef AVR
+
 std::uint8_t PORTA{};
 std::uint8_t PORTB{};
 std::uint8_t PORTC{};
@@ -20,3 +22,5 @@ std::uint8_t PINC{};
 std::uint8_t PIND{};
 std::uint8_t PINE{};
 std::uint8_t PINF{};
+
+#endif
