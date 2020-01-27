@@ -1,7 +1,11 @@
 #ifndef PINS_LIST_HPP
 #define PINS_LIST_HPP
 
+#ifndef AVR
 #include <ostream>
+#endif
+
+#include "conditional.h"
 
 /**
  * constructors
@@ -10,9 +14,11 @@
 struct nil {
     void high() {}
 
+#ifndef AVR
     friend std::ostream& operator<<(std::ostream& os, const nil&) {
         return os;
     }
+#endif
 };
 
 template<typename A, typename AS>
@@ -25,9 +31,12 @@ struct cons {
         XS().high();
     }
 
+
+#ifndef AVR
     friend std::ostream& operator<<(std::ostream& os, const cons<X, XS>&) {
         return os << X() << " " << XS();
     }
+#endif
 };
 
 /**
@@ -67,7 +76,7 @@ struct min<cons<X, nil>> {
 
 template<typename X, typename XS>
 struct min<cons<X, XS>> {
-    using type = typename std::conditional<X() <= min_t<XS>(), X, min_t<XS>>::type;
+    using type = typename conditional<X() <= min_t<XS>(), X, min_t<XS>>::type;
 };
 
 
@@ -85,7 +94,7 @@ struct drop_min<cons<X, nil>> {
 
 template<typename X, typename XS>
 struct drop_min<cons<X, XS>> {
-    using type = typename std::conditional<X() <= min_t<XS>(),
+    using type = typename conditional<X() <= min_t<XS>(),
             cons<min_t<XS>, drop_min_t<XS>>,
             cons<X, drop_min_t<XS>>
     >::type;

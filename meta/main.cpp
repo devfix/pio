@@ -1,7 +1,8 @@
+#ifndef AVR
+
 #include <iostream>
 
 #include "pin_lists.hpp"
-
 
 int main() {
     using xs = build_t<D0, A0, C0, A2, B0, A1, D0, A4>;
@@ -14,3 +15,17 @@ int main() {
               << std::bitset<8>(PORTD) << std::endl;
     return 0;
 }
+
+#else
+
+#include "pin_lists.hpp"
+
+int main()
+{
+	using xs = build_t<D0, A0, C0, A2, B0, A1, D0, A4>;
+	asm("nop\nnop\nnop");
+	concat_pins_t<sort_t<xs>>().high();
+	asm("nop\nnop\nnop");
+}
+
+#endif

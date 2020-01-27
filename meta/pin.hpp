@@ -1,39 +1,56 @@
 #ifndef PINS_PIN_HPP
 #define PINS_PIN_HPP
 
+#ifndef AVR
 #include <bitset>
+#else
+#include <avr/io.h>
+#endif
+
 
 /**
  * lookup table + hardware
  */
 
+#ifndef AVR
 unsigned char PORTA{};
 unsigned char PORTB{};
 unsigned char PORTC{};
 unsigned char PORTD{};
+#endif
 
 template<char P>
 struct PortRegister {};
 
+#ifdef PORTA
 template<>
 struct PortRegister<'A'> {
-    static constexpr unsigned char* value = &PORTA;
+    static constexpr auto* value = &PORTA;
 };
+#endif
 
+#ifdef PORTB
 template<>
 struct PortRegister<'B'> {
-    static constexpr unsigned char* value = &PORTB;
+    static constexpr auto* value = &PORTB;
 };
+#endif
 
+
+#ifdef PORTC
 template<>
 struct PortRegister<'C'> {
-    static constexpr unsigned char* value = &PORTC;
+    static constexpr auto* value = &PORTC;
 };
+#endif
 
+
+#ifdef PORTD
 template<>
 struct PortRegister<'D'> {
-    static constexpr unsigned char* value = &PORTD;
+    static constexpr auto* value = &PORTD;
 };
+#endif
 
 /**
  * pin
@@ -41,9 +58,11 @@ struct PortRegister<'D'> {
 
 template<char P, unsigned char L>
 struct pin {
+#ifndef AVR
     friend std::ostream& operator<<(std::ostream& os, const pin<P, L>& p) {
         return os << P << std::bitset<8>(L);
     }
+#endif
 
     void high() {
         *PortRegister<P>::value |= L;
