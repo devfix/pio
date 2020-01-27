@@ -12,4 +12,4 @@ SET(CMAKE_SHARED_LIBRARY_LINK_CXX_FLAGS "")
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fdump-tree-original -O3 -save-temps")
 #SET(CMAKE_VERBOSE_MAKEFILE "ON")
 
-add_executable(meta list.hpp pin.hpp pin_lists.hpp io.h io.cpp tests.cpp)
+add_executable(meta linkedlist.hpp pin.hpp concat.hpp io.h io.cpp tests.cpp)
