@@ -5,7 +5,7 @@
 
 #ifdef AVR
 
-#include "library.h"
+#include "pio.hpp"
 
 /**
  * Just a simple test that avr-gcc can handle the template stuff.
@@ -25,12 +25,10 @@ int main()
 #include <functional>
 #include <iostream>
 #include <cassert>
-#include "library.h"
+#include "pio.hpp"
 
 using std::cout;
 using std::endl;
-
-#define LAMBDA(CALL) [](){CALL}
 
 template<typename R, typename T, typename V>
 void testRegOp(T &reg, V init_val, std::function<R()> operation, V expected_val);

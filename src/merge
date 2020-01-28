@@ -1,0 +1,11 @@
+#!/bin/bash
+hpps=("header.hpp" "conditional.hpp" "mem.hpp" "io.hpp" "linkedlist.hpp" "pin.hpp" "concat.hpp" "library.hpp")
+source_dir="include"
+target="pio.hpp"
+
+rm -f "$target"
+
+for hpp in "${hpps[@]}"; do
+    # copy file and remove empty lines
+    grep -v -e '#include\s*\"\w*\.hpp\"' -v -e '^$' "$source_dir/$hpp" >> "$target"
+done

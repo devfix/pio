@@ -1,7 +1,7 @@
 #ifndef PINS_PIN_HPP
 #define PINS_PIN_HPP
 
-#include "io.h"
+#include "io.hpp"
 
 
 /**

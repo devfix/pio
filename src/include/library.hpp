@@ -1,5 +1,5 @@
-#ifndef PIO_LIBRARY_H
-#define PIO_LIBRARY_H
+#ifndef PIO_LIBRARY_HPP
+#define PIO_LIBRARY_HPP
 
 #include "concat.hpp"
 
@@ -23,4 +23,4 @@ struct clear_port {
     clear_port() { concat_t<sort_t<build_t<PINS...>>>().port_clear(); }
 };
 
-#endif //PIO_LIBRARY_H
+#endif //PIO_LIBRARY_HPP

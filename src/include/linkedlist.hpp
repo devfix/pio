@@ -1,7 +1,7 @@
 #ifndef PINS_LIST_HPP
 #define PINS_LIST_HPP
 
-#include "mem.h"
+#include "mem.hpp"
 
 #ifndef AVR
 
@@ -9,8 +9,8 @@
 
 #endif
 
-#include "io.h"
-#include "conditional.h"
+#include "io.hpp"
+#include "conditional.hpp"
 
 /**
  * constructors for a linkedlist
