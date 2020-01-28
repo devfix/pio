@@ -3,6 +3,9 @@ hpps=("header.hpp" "conditional.hpp" "mem.hpp" "io.hpp" "linkedlist.hpp" "pin.hp
 source_dir="include"
 target="pio.hpp"
 
+# cd into script directory
+cd "$(dirname "$0")"
+
 rm -f "$target"
 
 for hpp in "${hpps[@]}"; do
