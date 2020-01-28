@@ -1,23 +1,23 @@
-/***
-*     _______  _____   ___
-*    |_   __ \|_   _|.'   `.
-*      | |__) | | | /  .-.  \
-*      |  ___/  | | | |   | |
-*     _| |_    _| |_\  `-'  /
-*    |_____|  |_____|`.___.'
-*
-*      Avr Pin I/O Library
-*
-*    ~ version 2.0
-*    ~ written by Jonas Höfer, Tristan Krause
-*    ~ visit github.com/devfix/pio
-*
-*    You should have received a copy of the MIT License.
-*    If not, see <https://opensource.org/licenses/MIT>.
-*
-*/
-#ifndef CONDITIONAL_H
-#define CONDITIONAL_H
+/*
+ *     _______  _____   ___
+ *    |_   __ \|_   _|.'   `.
+ *      | |__) | | | /  .-.  \
+ *      |  ___/  | | | |   | |
+ *     _| |_    _| |_\  `-'  /
+ *    |_____|  |_____|`.___.'
+ *
+ *      Avr Pin I/O Library
+ *
+ *    ~ version 3.0.0
+ *    ~ written by Jonas Höfer, Tristan Krause
+ *    ~ visit github.com/devfix/pio
+ *
+ *    You should have received a copy of the MIT License.
+ *    If not, see <https://opensource.org/licenses/MIT>.
+ *
+ */
+#ifndef PIO_CONDITIONAL_HPP
+#define PIO_CONDITIONAL_HPP
 template<bool B, class T, class F>
 struct conditional {
     typedef T type;
@@ -28,7 +28,7 @@ struct conditional<false, T, F> {
 };
 template<bool B, class T, class F>
 using conditional_t = typename conditional<B, T, F>::type;
-#endif //CONDITIONAL_H
+#endif // PIO_CONDITIONAL_HPP
 #ifndef PIO_MEM_HPP
 #define PIO_MEM_HPP
 #ifdef AVR
@@ -37,8 +37,8 @@ using conditional_t = typename conditional<B, T, F>::type;
 #define FORCE_INLINE inline
 #endif
 #endif //PIO_MEM_HPP
-#ifndef IO_H
-#define IO_H
+#ifndef PIO_IO_HPP
+#define PIO_IO_HPP
 #ifdef AVR
 #include <avr/io.h>
 #else
@@ -80,9 +80,9 @@ extern std::uint8_t PINF;
 #define PINE PINE
 #define PINF PINF
 #endif
-#endif //IO_H
-#ifndef PINS_LIST_HPP
-#define PINS_LIST_HPP
+#endif // PIO_IO_HPP
+#ifndef PIO_LINKEDLIST_HPP
+#define PIO_LINKEDLIST_HPP
 #ifndef AVR
 #include <ostream>
 #endif
@@ -193,9 +193,9 @@ template<>
 struct sort<nil> {
     using type = nil;
 };
-#endif //PINS_LIST_HPP
-#ifndef PINS_PIN_HPP
-#define PINS_PIN_HPP
+#endif // PIO_LINKEDLIST_HPP
+#ifndef PIO_PIN_HPP
+#define PIO_PIN_HPP
 /**
  * pin
  */
@@ -337,9 +337,9 @@ using F4 = pio_pin<'F', 0x10>;
 using F5 = pio_pin<'F', 0x20>;
 using F6 = pio_pin<'F', 0x40>;
 using F7 = pio_pin<'F', 0x80>;
-#endif //PINS_PIN_HPP
-#ifndef PINS_PIN_LISTS_HPP
-#define PINS_PIN_LISTS_HPP
+#endif // PIO_PIN_HPP
+#ifndef PIO_CONCAT_HPP
+#define PIO_CONCAT_HPP
 /**
  * concat
  * pins of the same port (group) get combined (by logic or) resulting in a list with only one element for each used port
@@ -364,7 +364,7 @@ template<char P1, unsigned char L1, char P2, unsigned char L2, typename R>
 struct concat<cons<pio_pin<P1, L1>, cons<pio_pin<P2, L2>, R>>> {
     using type = cons<pio_pin<P1, L1>, concat_t<cons<pio_pin<P2, L2>, R>>>;
 };
-#endif //PINS_PIN_LISTS_HPP
+#endif // PIO_CONCAT_HPP
 #ifndef PIO_LIBRARY_HPP
 #define PIO_LIBRARY_HPP
 template<typename ... PINS>
@@ -383,4 +383,4 @@ template<typename ... PINS>
 struct clear_port {
     clear_port() { concat_t<sort_t<build_t<PINS...>>>().port_clear(); }
 };
-#endif //PIO_LIBRARY_HPP
+#endif // PIO_LIBRARY_HPP

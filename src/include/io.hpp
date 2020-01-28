@@ -1,5 +1,5 @@
-#ifndef IO_H
-#define IO_H
+#ifndef PIO_IO_HPP
+#define PIO_IO_HPP
 
 #ifdef AVR
 
@@ -53,4 +53,4 @@ extern std::uint8_t PINF;
 
 #endif
 
-#endif //IO_H
+#endif // PIO_IO_HPP

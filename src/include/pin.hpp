@@ -1,5 +1,5 @@
-#ifndef PINS_PIN_HPP
-#define PINS_PIN_HPP
+#ifndef PIO_PIN_HPP
+#define PIO_PIN_HPP
 
 #include "io.hpp"
 
@@ -167,4 +167,4 @@ using F5 = pio_pin<'F', 0x20>;
 using F6 = pio_pin<'F', 0x40>;
 using F7 = pio_pin<'F', 0x80>;
 
-#endif //PINS_PIN_HPP
+#endif // PIO_PIN_HPP

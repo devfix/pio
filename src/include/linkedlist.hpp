@@ -1,5 +1,5 @@
-#ifndef PINS_LIST_HPP
-#define PINS_LIST_HPP
+#ifndef PIO_LINKEDLIST_HPP
+#define PIO_LINKEDLIST_HPP
 
 #include "mem.hpp"
 
@@ -149,4 +149,4 @@ struct sort<nil> {
 };
 
 
-#endif //PINS_LIST_HPP
+#endif // PIO_LINKEDLIST_HPP

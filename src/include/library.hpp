@@ -23,4 +23,4 @@ struct clear_port {
     clear_port() { concat_t<sort_t<build_t<PINS...>>>().port_clear(); }
 };
 
-#endif //PIO_LIBRARY_HPP
+#endif // PIO_LIBRARY_HPP

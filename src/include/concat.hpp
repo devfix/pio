@@ -1,5 +1,5 @@
-#ifndef PINS_PIN_LISTS_HPP
-#define PINS_PIN_LISTS_HPP
+#ifndef PIO_CONCAT_HPP
+#define PIO_CONCAT_HPP
 
 #include "linkedlist.hpp"
 #include "pin.hpp"
@@ -35,4 +35,4 @@ struct concat<cons<pio_pin<P1, L1>, cons<pio_pin<P2, L2>, R>>> {
     using type = cons<pio_pin<P1, L1>, concat_t<cons<pio_pin<P2, L2>, R>>>;
 };
 
-#endif //PINS_PIN_LISTS_HPP
+#endif // PIO_CONCAT_HPP
