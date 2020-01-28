@@ -1,6 +1,21 @@
-/**
- * PIO 2.0
- */
+/***
+*     _______  _____   ___
+*    |_   __ \|_   _|.'   `.
+*      | |__) | | | /  .-.  \
+*      |  ___/  | | | |   | |
+*     _| |_    _| |_\  `-'  /
+*    |_____|  |_____|`.___.'
+*
+*      Avr Pin I/O Library
+*
+*    ~ version 2.0
+*    ~ written by Jonas Höfer, Tristan Krause
+*    ~ visit github.com/devfix/pio
+*
+*    You should have received a copy of the MIT License.
+*    If not, see <https://opensource.org/licenses/MIT>.
+*
+*/
 #ifndef CONDITIONAL_H
 #define CONDITIONAL_H
 template<bool B, class T, class F>
