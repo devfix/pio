@@ -21,8 +21,8 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -save-temps")
 add_custom_target(merge COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/merge)
 
 # add test target
-add_executable(meta tests.cpp io.cpp)
+add_executable(tests tests.cpp io.cpp)
 
 # run merge script before build
-add_dependencies(meta merge)
+add_dependencies(tests merge)
 
