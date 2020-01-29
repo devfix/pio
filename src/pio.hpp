@@ -36,7 +36,7 @@ using conditional_t = typename conditional<B, T, F>::type;
 #else
 #define FORCE_INLINE inline
 #endif
-#endif //PIO_MEM_HPP
+#endif // PIO_MEM_HPP
 #ifndef PIO_IO_HPP
 #define PIO_IO_HPP
 #ifdef AVR
@@ -368,19 +368,23 @@ struct concat<cons<pio_pin<P1, L1>, cons<pio_pin<P2, L2>, R>>> {
 #ifndef PIO_LIBRARY_HPP
 #define PIO_LIBRARY_HPP
 template<typename ... PINS>
-struct set_ddr {
-    set_ddr() { concat_t<sort_t<build_t<PINS...>>>().ddr_set(); }
+void set_ddr()
+{
+	concat_t<sort_t<build_t<PINS...>>>().ddr_set();
+}
+template<typename ... PINS>
+void clear_ddr()
+{
+	concat_t<sort_t<build_t<PINS...>>>().ddr_clear();
 };
 template<typename ... PINS>
-struct clear_ddr {
-    clear_ddr() { concat_t<sort_t<build_t<PINS...>>>().ddr_clear(); }
+void set_port()
+{
+	concat_t<sort_t<build_t<PINS...>>>().port_set();
 };
 template<typename ... PINS>
-struct set_port {
-    set_port() { concat_t<sort_t<build_t<PINS...>>>().port_set(); }
-};
-template<typename ... PINS>
-struct clear_port {
-    clear_port() { concat_t<sort_t<build_t<PINS...>>>().port_clear(); }
+void clear_port()
+{
+	concat_t<sort_t<build_t<PINS...>>>().port_clear();
 };
 #endif // PIO_LIBRARY_HPP
