@@ -17,7 +17,7 @@ SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -save-temps")
 add_custom_target(merge COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/merge)
 
 # add test target
-add_executable(testrunner testrunner.cpp)
+add_executable(testrunner testrunner.cpp map.hpp)
 
 # run merge script before build
 #add_dependencies(testrunner merge)

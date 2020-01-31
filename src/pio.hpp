@@ -204,6 +204,7 @@ struct pio_pin;
 #ifdef PORTA
 template<unsigned char L>
 struct pio_pin<'A', L> {
+	static constexpr decltype(L) LEAD = L;
     FORCE_INLINE static void ddr_set() { DDRA |= L; }
     FORCE_INLINE static void ddr_clear() { DDRA &= ~L; }
     FORCE_INLINE static void port_set() { PORTA |= L; }
@@ -218,6 +219,7 @@ struct pio_pin<'A', L> {
 #ifdef PORTB
 template<unsigned char L>
 struct pio_pin<'B', L> {
+	static constexpr decltype(L) LEAD = L;
     FORCE_INLINE static void ddr_set() { DDRB |= L; }
     FORCE_INLINE static void ddr_clear() { DDRB &= ~L; }
     FORCE_INLINE static void port_set() { PORTB |= L; }
@@ -232,6 +234,7 @@ struct pio_pin<'B', L> {
 #ifdef PORTC
 template<unsigned char L>
 struct pio_pin<'C', L> {
+	static constexpr decltype(L) LEAD = L;
     FORCE_INLINE static void ddr_set() { DDRC |= L; }
     FORCE_INLINE static void ddr_clear() { DDRC &= ~L; }
     FORCE_INLINE static void port_set() { PORTC |= L; }
@@ -246,6 +249,7 @@ struct pio_pin<'C', L> {
 #ifdef PORTD
 template<unsigned char L>
 struct pio_pin<'D', L> {
+	static constexpr decltype(L) LEAD = L;
     FORCE_INLINE static void ddr_set() { DDRD |= L; }
     FORCE_INLINE static void ddr_clear() { DDRD &= ~L; }
     FORCE_INLINE static void port_set() { PORTD |= L; }
@@ -260,6 +264,7 @@ struct pio_pin<'D', L> {
 #ifdef PORTE
 template<unsigned char L>
 struct pio_pin<'E', L> {
+	static constexpr decltype(L) LEAD = L;
     FORCE_INLINE static void ddr_set() { DDRE |= L; }
     FORCE_INLINE static void ddr_clear() { DDRE &= ~L; }
     FORCE_INLINE static void port_set() { PORTE |= L; }
@@ -274,6 +279,7 @@ struct pio_pin<'E', L> {
 #ifdef PORTF
 template<unsigned char L>
 struct pio_pin<'F', L> {
+	static constexpr decltype(L) LEAD = L;
     FORCE_INLINE static void ddr_set() { DDRF |= L; }
     FORCE_INLINE static void ddr_clear() { DDRF &= ~L; }
     FORCE_INLINE static void port_set() { PORTF |= L; }
@@ -373,9 +379,25 @@ void set_ddr()
 	concat_t<sort_t<build_t<PINS...>>>().ddr_set();
 }
 template<typename ... PINS>
+struct set_ddr_t
+{
+	set_ddr_t()
+	{
+		set_ddr<PINS...>();
+	}
+};
+template<typename ... PINS>
 void clear_ddr()
 {
 	concat_t<sort_t<build_t<PINS...>>>().ddr_clear();
+};
+template<typename ... PINS>
+struct clear_ddr_t
+{
+	clear_ddr_t()
+	{
+		clear_ddr<PINS...>();
+	}
 };
 template<typename ... PINS>
 void set_port()
@@ -383,8 +405,24 @@ void set_port()
 	concat_t<sort_t<build_t<PINS...>>>().port_set();
 };
 template<typename ... PINS>
+struct set_port_t
+{
+	set_port_t()
+	{
+		set_port<PINS...>();
+	}
+};
+template<typename ... PINS>
 void clear_port()
 {
 	concat_t<sort_t<build_t<PINS...>>>().port_clear();
+};
+template<typename ... PINS>
+struct clear_port_t
+{
+	clear_port_t()
+	{
+		clear_port<PINS...>();
+	}
 };
 #endif // PIO_LIBRARY_HPP

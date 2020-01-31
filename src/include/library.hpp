@@ -10,9 +10,27 @@ void set_ddr()
 }
 
 template<typename ... PINS>
+struct set_ddr_t
+{
+	set_ddr_t()
+	{
+		set_ddr<PINS...>();
+	}
+};
+
+template<typename ... PINS>
 void clear_ddr()
 {
 	concat_t<sort_t<build_t<PINS...>>>().ddr_clear();
+};
+
+template<typename ... PINS>
+struct clear_ddr_t
+{
+	clear_ddr_t()
+	{
+		clear_ddr<PINS...>();
+	}
 };
 
 template<typename ... PINS>
@@ -22,9 +40,27 @@ void set_port()
 };
 
 template<typename ... PINS>
+struct set_port_t
+{
+	set_port_t()
+	{
+		set_port<PINS...>();
+	}
+};
+
+template<typename ... PINS>
 void clear_port()
 {
 	concat_t<sort_t<build_t<PINS...>>>().port_clear();
+};
+
+template<typename ... PINS>
+struct clear_port_t
+{
+	clear_port_t()
+	{
+		clear_port<PINS...>();
+	}
 };
 
 #endif // PIO_LIBRARY_HPP
