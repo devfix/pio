@@ -13,18 +13,11 @@ set(CMAKE_CXX_STANDARD 11)
 # set optimization level, save assembler code
 SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -save-temps")
 
-# fake target to run merge script
-add_custom_target(merge COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/merge)
+# add testrunner target
+add_executable(testrunner testrunner.cpp map.h include/concat.h include/conditional.h include/header.h include/io.h include/library.h include/linkedlist.h include/mem.h include/pin.h)
 
-# fake target to final script which creates the arduino library
-add_custom_target(pio COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/create-lib)
-
-# add test target
-add_executable(testrunner testrunner.cpp)
-
-# run merge script before build
-add_dependencies(testrunner merge)
-add_dependencies(pio testrunner)
+# compile pio as single header file after build and create arduino library
+add_custom_command(TARGET testrunner POST_BUILD COMMAND ${CMAKE_CURRENT_SOURCE_DIR}/create-lib)
 
 if(DEFINED TARGET_AVR)
     SET(CMAKE_C_COMPILER avr-gcc)

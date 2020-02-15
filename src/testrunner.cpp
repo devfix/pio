@@ -1,6 +1,6 @@
 #ifdef AVR
 
-#include "pio.h"
+#include "include/library.h"
 
 /**
  * Just a simple test that avr-gcc can handle the template stuff.
@@ -8,10 +8,10 @@
 
 int main()
 {
-	set_ddr<A1, A3, A5, A7>();
-	clear_ddr<A0, A2, A4, A6>();
-	set_port<A1, A3, A5, A7>();
-	clear_port<A0, A3, A4, A6>();
+	set_ddr<LA1, LA3, LA5, LA7>();
+	clear_ddr<LA0, LA2, LA4, LA6>();
+	set_port<LA1, LA3, LA5, LA7>();
+	clear_port<LA0, LA3, LA4, LA6>();
 }
 
 

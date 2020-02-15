@@ -1,8 +1,27 @@
 #!/bin/bash
+hs=("header.h" "conditional.h" "mem.h" "io.h" "linkedlist.h" "pin.h" "concat.h" "library.h")
+source_dir="include"
+target="pio.h"
 
-# cd into project root directory
-cd "$(dirname "$0")/../"
+# cd into script directory
+cd "$(dirname "$0")"
 
+# compile single header file
+rm -f "$target"
+for h in "${hs[@]}"; do
+    # copy file and remove empty lines
+    grep -v -e '#include\s*\"\w*\.h\"' -v -e '^$' "$source_dir/$h" >> "$target"
+done
+
+# create arduino zip library
+cd ..
 cp src/pio.* pio/src/
 rm -f pio.zip
 zip -qrT pio.zip pio
+
+# path library if already installed (linux only)
+path="/home/`whoami`/.Arduino/libraries/pio"
+if [ -d "$path" ]; then
+  rm -r "$path"
+  cp -r pio "$path"
+fi

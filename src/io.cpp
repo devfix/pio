@@ -2,25 +2,25 @@
 
 #ifndef AVR
 
-std::uint8_t PORTA{};
-std::uint8_t PORTB{};
-std::uint8_t PORTC{};
-std::uint8_t PORTD{};
-std::uint8_t PORTE{};
-std::uint8_t PORTF{};
+DDR_T DDRA{};
+DDR_T DDRB{};
+DDR_T DDRC{};
+DDR_T DDRD{};
+DDR_T DDRE{};
+DDR_T DDRF{};
 
-std::uint8_t DDRA{};
-std::uint8_t DDRB{};
-std::uint8_t DDRC{};
-std::uint8_t DDRD{};
-std::uint8_t DDRE{};
-std::uint8_t DDRF{};
+PORT_T PORTA{};
+PORT_T PORTB{};
+PORT_T PORTC{};
+PORT_T PORTD{};
+PORT_T PORTE{};
+PORT_T PORTF{};
 
-std::uint8_t PINA{};
-std::uint8_t PINB{};
-std::uint8_t PINC{};
-std::uint8_t PIND{};
-std::uint8_t PINE{};
-std::uint8_t PINF{};
+PIN_T PINA{};
+PIN_T PINB{};
+PIN_T PINC{};
+PIN_T PIND{};
+PIN_T PINE{};
+PIN_T PINF{};
 
 #endif
