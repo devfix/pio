@@ -10,7 +10,7 @@ struct GenericRegisterTest
 	{
 		reg = init;
 		F<T>();
-		EXPECT_EQ(reg, expected);
+        EXPECT_EQ(reg, expected); // ASSERT_EQ doesn't work here
 	}
 };
 
@@ -28,16 +28,16 @@ void genericGroupTest(decltype(DDRA)& ddr, decltype(PORTA)& port, decltype(PINA)
 	GenericRegisterTest<T, set_port_t, decltype(PORTA)>(port, static_cast<decltype(PORTA)>(T::LEAD<<1), static_cast<decltype(DDRA)>(T::LEAD | (T::LEAD<<1)));
 
 	pin = 0;
-    EXPECT_EQ(get_pin<T>(), 0);
+    ASSERT_EQ(get_pin<T>(), 0);
 
     pin = static_cast<std::remove_reference<decltype(pin)>::type>(T::LEAD >> 1);
-    EXPECT_EQ(get_pin<T>(), 0);
+    ASSERT_EQ(get_pin<T>(), 0);
 
     pin = static_cast<std::remove_reference<decltype(pin)>::type>(T::LEAD << 1);
-    EXPECT_EQ(get_pin<T>(), 0);
+    ASSERT_EQ(get_pin<T>(), 0);
 
     pin = T::LEAD;
-    EXPECT_EQ(get_pin<T>(), pin);
+    ASSERT_EQ(get_pin<T>(), pin);
 
 };
 

@@ -29,7 +29,7 @@ if(DEFINED TARGET_AVR)
     SET(CMAKE_SHARED_LIBRARY_LINK_CXX_FLAGS "")
 else()
     # only add the gtest source if not compiling for avr
-    target_sources(testrunner PRIVATE tests.cpp io.cpp test_single_bit.cpp)
+    target_sources(testrunner PRIVATE test_multiple_bits.cpp io.cpp test_single_bit.cpp)
 
     # link google test framework
     target_link_libraries(testrunner gtest pthread)
