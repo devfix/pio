@@ -1,8 +1,8 @@
 #ifndef PIO_CONCAT_HPP
 #define PIO_CONCAT_HPP
 
-#include "linkedlist.hpp"
-#include "pin.hpp"
+#include "linkedlist.h"
+#include "pin.h"
 
 /**
  * concat

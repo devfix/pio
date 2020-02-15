@@ -1,7 +1,7 @@
 #ifndef PIO_PIN_HPP
 #define PIO_PIN_HPP
 
-#include "io.hpp"
+#include "io.h"
 
 
 /**
@@ -19,7 +19,7 @@ struct pio_pin<'A', L> {
     FORCE_INLINE static void ddr_clear() { DDRA &= ~L; }
     FORCE_INLINE static void port_set() { PORTA |= L; }
     FORCE_INLINE static void port_clear() { PORTA &= ~L; }
-    static constexpr decltype(PINA) pin_get() { return PINA & L; }
+    static constexpr PIN_T pin_get() { return PINA & L; }
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "A" << (int)L << " ";
@@ -37,7 +37,7 @@ struct pio_pin<'B', L> {
     FORCE_INLINE static void ddr_clear() { DDRB &= ~L; }
     FORCE_INLINE static void port_set() { PORTB |= L; }
     FORCE_INLINE static void port_clear() { PORTB &= ~L; }
-    static constexpr decltype(PINB) pin_get() { return PINB & L; }
+    static constexpr PIN_T pin_get() { return PINB & L; }
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "B" << (int)L << " ";
@@ -55,7 +55,7 @@ struct pio_pin<'C', L> {
     FORCE_INLINE static void ddr_clear() { DDRC &= ~L; }
     FORCE_INLINE static void port_set() { PORTC |= L; }
     FORCE_INLINE static void port_clear() { PORTC &= ~L; }
-    static constexpr decltype(PINC) pin_get() { return PINC & L; }
+    static constexpr PIN_T pin_get() { return PINC & L; }
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "C" << (int)L << " ";
@@ -73,7 +73,7 @@ struct pio_pin<'D', L> {
     FORCE_INLINE static void ddr_clear() { DDRD &= ~L; }
     FORCE_INLINE static void port_set() { PORTD |= L; }
     FORCE_INLINE static void port_clear() { PORTD &= ~L; }
-    static constexpr decltype(PIND) pin_get() { return PIND & L; }
+    static constexpr PIN_T pin_get() { return PIND & L; }
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "D" << (int)L << " ";
@@ -91,7 +91,7 @@ struct pio_pin<'E', L> {
     FORCE_INLINE static void ddr_clear() { DDRE &= ~L; }
     FORCE_INLINE static void port_set() { PORTE |= L; }
     FORCE_INLINE static void port_clear() { PORTE &= ~L; }
-    static constexpr decltype(PINE) pin_get() { return PINE & L; }
+    static constexpr PIN_T pin_get() { return PINE & L; }
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "E" << (int)L << " ";
@@ -109,7 +109,7 @@ struct pio_pin<'F', L> {
     FORCE_INLINE static void ddr_clear() { DDRF &= ~L; }
     FORCE_INLINE static void port_set() { PORTF |= L; }
     FORCE_INLINE static void port_clear() { PORTF &= ~L; }
-    static constexpr decltype(PINF) pin_get() { return PINF & L; }
+    static constexpr PIN_T pin_get() { return PINF & L; }
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "F" << (int)L << " ";
@@ -125,58 +125,58 @@ constexpr bool operator<=(pio_pin<P1, L1>, pio_pin<P2, L2>) {
 }
 
 
-using A0 = pio_pin<'A', 0x01>;
-using A1 = pio_pin<'A', 0x02>;
-using A2 = pio_pin<'A', 0x04>;
-using A3 = pio_pin<'A', 0x08>;
-using A4 = pio_pin<'A', 0x10>;
-using A5 = pio_pin<'A', 0x20>;
-using A6 = pio_pin<'A', 0x40>;
-using A7 = pio_pin<'A', 0x80>;
+using LA0 = pio_pin<'A', 0x01>;
+using LA1 = pio_pin<'A', 0x02>;
+using LA2 = pio_pin<'A', 0x04>;
+using LA3 = pio_pin<'A', 0x08>;
+using LA4 = pio_pin<'A', 0x10>;
+using LA5 = pio_pin<'A', 0x20>;
+using LA6 = pio_pin<'A', 0x40>;
+using LA7 = pio_pin<'A', 0x80>;
 
-using B0 = pio_pin<'B', 0x01>;
-using B1 = pio_pin<'B', 0x02>;
-using B2 = pio_pin<'B', 0x04>;
-using B3 = pio_pin<'B', 0x08>;
-using B4 = pio_pin<'B', 0x10>;
-using B5 = pio_pin<'B', 0x20>;
-using B6 = pio_pin<'B', 0x40>;
-using B7 = pio_pin<'B', 0x80>;
+using LB0 = pio_pin<'B', 0x01>;
+using LB1 = pio_pin<'B', 0x02>;
+using LB2 = pio_pin<'B', 0x04>;
+using LB3 = pio_pin<'B', 0x08>;
+using LB4 = pio_pin<'B', 0x10>;
+using LB5 = pio_pin<'B', 0x20>;
+using LB6 = pio_pin<'B', 0x40>;
+using LB7 = pio_pin<'B', 0x80>;
 
-using C0 = pio_pin<'C', 0x01>;
-using C1 = pio_pin<'C', 0x02>;
-using C2 = pio_pin<'C', 0x04>;
-using C3 = pio_pin<'C', 0x08>;
-using C4 = pio_pin<'C', 0x10>;
-using C5 = pio_pin<'C', 0x20>;
-using C6 = pio_pin<'C', 0x40>;
-using C7 = pio_pin<'C', 0x80>;
+using LC0 = pio_pin<'C', 0x01>;
+using LC1 = pio_pin<'C', 0x02>;
+using LC2 = pio_pin<'C', 0x04>;
+using LC3 = pio_pin<'C', 0x08>;
+using LC4 = pio_pin<'C', 0x10>;
+using LC5 = pio_pin<'C', 0x20>;
+using LC6 = pio_pin<'C', 0x40>;
+using LC7 = pio_pin<'C', 0x80>;
 
-using D0 = pio_pin<'D', 0x01>;
-using D1 = pio_pin<'D', 0x02>;
-using D2 = pio_pin<'D', 0x04>;
-using D3 = pio_pin<'D', 0x08>;
-using D4 = pio_pin<'D', 0x10>;
-using D5 = pio_pin<'D', 0x20>;
-using D6 = pio_pin<'D', 0x40>;
-using D7 = pio_pin<'D', 0x80>;
+using LD0 = pio_pin<'D', 0x01>;
+using LD1 = pio_pin<'D', 0x02>;
+using LD2 = pio_pin<'D', 0x04>;
+using LD3 = pio_pin<'D', 0x08>;
+using LD4 = pio_pin<'D', 0x10>;
+using LD5 = pio_pin<'D', 0x20>;
+using LD6 = pio_pin<'D', 0x40>;
+using LD7 = pio_pin<'D', 0x80>;
 
-using E0 = pio_pin<'E', 0x01>;
-using E1 = pio_pin<'E', 0x02>;
-using E2 = pio_pin<'E', 0x04>;
-using E3 = pio_pin<'E', 0x08>;
-using E4 = pio_pin<'E', 0x10>;
-using E5 = pio_pin<'E', 0x20>;
-using E6 = pio_pin<'E', 0x40>;
-using E7 = pio_pin<'E', 0x80>;
+using LE0 = pio_pin<'E', 0x01>;
+using LE1 = pio_pin<'E', 0x02>;
+using LE2 = pio_pin<'E', 0x04>;
+using LE3 = pio_pin<'E', 0x08>;
+using LE4 = pio_pin<'E', 0x10>;
+using LE5 = pio_pin<'E', 0x20>;
+using LE6 = pio_pin<'E', 0x40>;
+using LE7 = pio_pin<'E', 0x80>;
 
-using F0 = pio_pin<'F', 0x01>;
-using F1 = pio_pin<'F', 0x02>;
-using F2 = pio_pin<'F', 0x04>;
-using F3 = pio_pin<'F', 0x08>;
-using F4 = pio_pin<'F', 0x10>;
-using F5 = pio_pin<'F', 0x20>;
-using F6 = pio_pin<'F', 0x40>;
-using F7 = pio_pin<'F', 0x80>;
+using LF0 = pio_pin<'F', 0x01>;
+using LF1 = pio_pin<'F', 0x02>;
+using LF2 = pio_pin<'F', 0x04>;
+using LF3 = pio_pin<'F', 0x08>;
+using LF4 = pio_pin<'F', 0x10>;
+using LF5 = pio_pin<'F', 0x20>;
+using LF6 = pio_pin<'F', 0x40>;
+using LF7 = pio_pin<'F', 0x80>;
 
 #endif // PIO_PIN_HPP

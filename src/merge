@@ -1,14 +1,14 @@
 #!/bin/bash
-hpps=("header.hpp" "conditional.hpp" "mem.hpp" "io.hpp" "linkedlist.hpp" "pin.hpp" "concat.hpp" "library.hpp")
+hs=("header.h" "conditional.h" "mem.h" "io.h" "linkedlist.h" "pin.h" "concat.h" "library.h")
 source_dir="include"
-target="pio.hpp"
+target="pio.h"
 
 # cd into script directory
 cd "$(dirname "$0")"
 
 rm -f "$target"
 
-for hpp in "${hpps[@]}"; do
+for h in "${hs[@]}"; do
     # copy file and remove empty lines
-    grep -v -e '#include\s*\"\w*\.hpp\"' -v -e '^$' "$source_dir/$hpp" >> "$target"
+    grep -v -e '#include\s*\"\w*\.h\"' -v -e '^$' "$source_dir/$h" >> "$target"
 done

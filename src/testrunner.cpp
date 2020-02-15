@@ -1,6 +1,6 @@
 #ifdef AVR
 
-#include "pio.hpp"
+#include "pio.h"
 
 /**
  * Just a simple test that avr-gcc can handle the template stuff.

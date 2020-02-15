@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <type_traits>
-#include "pio.hpp"
-#include "map.hpp"
+#include "pio.h"
+#include "map.h"
 
 template<typename T, template<typename ...> typename F, typename R>
 struct GenericRegisterTest
@@ -15,25 +15,25 @@ struct GenericRegisterTest
 };
 
 template<typename T>
-void genericGroupTest(decltype(DDRA)& ddr, decltype(PORTA)& port, decltype(PINA)& pin)
+void genericGroupTest(DDR_T& ddr, PORT_T& port, PIN_T& pin)
 {
-	GenericRegisterTest<T, set_ddr_t, decltype(DDRA)>(ddr, 0, T::LEAD);
-	GenericRegisterTest<T, set_ddr_t, decltype(DDRA)>(ddr, static_cast<decltype(DDRA)>(~T::LEAD), 0xFF);
-	GenericRegisterTest<T, set_ddr_t, decltype(DDRA)>(ddr, static_cast<decltype(DDRA)>(T::LEAD>>1), static_cast<decltype(DDRA)>(T::LEAD | (T::LEAD>>1)));
-	GenericRegisterTest<T, set_ddr_t, decltype(DDRA)>(ddr, static_cast<decltype(DDRA)>(T::LEAD<<1), static_cast<decltype(DDRA)>(T::LEAD | (T::LEAD<<1)));
+	GenericRegisterTest<T, set_ddr_t, DDR_T>(ddr, 0, T::LEAD);
+	GenericRegisterTest<T, set_ddr_t, DDR_T>(ddr, static_cast<DDR_T>(~T::LEAD), 0xFF);
+	GenericRegisterTest<T, set_ddr_t, DDR_T>(ddr, static_cast<DDR_T>(T::LEAD>>1), static_cast<DDR_T>(T::LEAD | (T::LEAD>>1)));
+	GenericRegisterTest<T, set_ddr_t, DDR_T>(ddr, static_cast<DDR_T>(T::LEAD<<1), static_cast<DDR_T>(T::LEAD | (T::LEAD<<1)));
 
-	GenericRegisterTest<T, set_port_t, decltype(PORTA)>(port, 0, T::LEAD);
-	GenericRegisterTest<T, set_port_t, decltype(PORTA)>(port, static_cast<decltype(PORTA)>(~T::LEAD), 0xFF);
-	GenericRegisterTest<T, set_port_t, decltype(PORTA)>(port, static_cast<decltype(PORTA)>(T::LEAD>>1), static_cast<decltype(DDRA)>(T::LEAD | (T::LEAD>>1)));
-	GenericRegisterTest<T, set_port_t, decltype(PORTA)>(port, static_cast<decltype(PORTA)>(T::LEAD<<1), static_cast<decltype(DDRA)>(T::LEAD | (T::LEAD<<1)));
+	GenericRegisterTest<T, set_port_t, PORT_T>(port, 0, T::LEAD);
+	GenericRegisterTest<T, set_port_t, PORT_T>(port, static_cast<PORT_T>(~T::LEAD), 0xFF);
+	GenericRegisterTest<T, set_port_t, PORT_T>(port, static_cast<PORT_T>(T::LEAD>>1), static_cast<DDR_T>(T::LEAD | (T::LEAD>>1)));
+	GenericRegisterTest<T, set_port_t, PORT_T>(port, static_cast<PORT_T>(T::LEAD<<1), static_cast<DDR_T>(T::LEAD | (T::LEAD<<1)));
 
 	pin = 0;
     ASSERT_EQ(get_pin<T>(), 0);
 
-    pin = static_cast<std::remove_reference<decltype(pin)>::type>(T::LEAD >> 1);
+    pin = static_cast<std::remove_reference<PIN_T>::type>(T::LEAD >> 1);
     ASSERT_EQ(get_pin<T>(), 0);
 
-    pin = static_cast<std::remove_reference<decltype(pin)>::type>(T::LEAD << 1);
+    pin = static_cast<std::remove_reference<PIN_T>::type>(T::LEAD << 1);
     ASSERT_EQ(get_pin<T>(), 0);
 
     pin = T::LEAD;
@@ -86,30 +86,30 @@ struct TestGroupF
 
 TEST(SingleBit, GroupA)
 {
-	map<TestGroupA, A0, A1, A2, A3, A4, A5, A6, A7>();
+	map<TestGroupA, LA0, LA1, LA2, LA3, LA4, LA5, LA6, LA7>();
 }
 
 TEST(SingleBit, GroupB)
 {
-	map<TestGroupB, B0, B1, B2, B3, B4, B5, B6, B7>();
+	map<TestGroupB, LB0, LB1, LB2, LB3, LB4, LB5, LB6, LB7>();
 }
 
 TEST(SingleBit, GroupC)
 {
-	map<TestGroupB, B0, B1, B2, B3, B4, B5, B6, B7>();
+	map<TestGroupB, LB0, LB1, LB2, LB3, LB4, LB5, LB6, LB7>();
 }
 
 TEST(SingleBit, GroupD)
 {
-	map<TestGroupD, D0, D1, D2, D3, D4, D5, D6, D7>();
+	map<TestGroupD, LD0, LD1, LD2, LD3, LD4, LD5, LD6, LD7>();
 }
 
 TEST(SingleBit, GroupE)
 {
-	map<TestGroupE, E0, E1, E2, E3, E4, E5, E6, E7>();
+	map<TestGroupE, LE0, LE1, LE2, LE3, LE4, LE5, LE6, LE7>();
 }
 
 TEST(SingleBit, GroupF)
 {
-	map<TestGroupF, F0, F1, F2, F3, F4, F5, F6, F7>();
+	map<TestGroupF, LF0, LF1, LF2, LF3, LF4, LF5, LF6, LF7>();
 }

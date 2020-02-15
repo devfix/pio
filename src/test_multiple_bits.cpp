@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <functional>
 #include <iostream>
-#include "pio.hpp"
+#include "pio.h"
 
 using std::cout;
 using std::endl;
@@ -26,39 +26,39 @@ void testMultiRegOp(
         V expected_val3);
 
 TEST(MultipleBitsDDR, SetSingleGroupDefaultIsZero) {
-    testRegOp<void>(DDRA, 0, []() { set_ddr<A0, A2, A4, A6>(); }, 0b01010101);
-    testRegOp<void>(DDRA, 0, []() { set_ddr<A0, A2, A4, A6>(); }, 0b01010101);
-    testRegOp<void>(DDRB, 0, []() { set_ddr<B0, B2, B4, B6>(); }, 0b01010101);
-    testRegOp<void>(DDRC, 0, []() { set_ddr<C0, C2, C4, C6>(); }, 0b01010101);
-    testRegOp<void>(DDRD, 0, []() { set_ddr<D0, D2, D4, D6>(); }, 0b01010101);
+    testRegOp<void>(DDRA, 0, []() { set_ddr<LA0, LA2, LA4, LA6>(); }, 0b01010101);
+    testRegOp<void>(DDRA, 0, []() { set_ddr<LA0, LA2, LA4, LA6>(); }, 0b01010101);
+    testRegOp<void>(DDRB, 0, []() { set_ddr<LB0, LB2, LB4, LB6>(); }, 0b01010101);
+    testRegOp<void>(DDRC, 0, []() { set_ddr<LC0, LC2, LC4, LC6>(); }, 0b01010101);
+    testRegOp<void>(DDRD, 0, []() { set_ddr<LD0, LD2, LD4, LD6>(); }, 0b01010101);
 }
 
 TEST(MultipleBitsDDR, SetSingleGroupDefaultIsPattern) {
-    testRegOp<void>(DDRA, 0b10101010, []() { set_ddr<A0, A2, A4, A6>(); }, 0xFF);
-    testRegOp<void>(DDRB, 0b10101010, []() { set_ddr<B0, B2, B4, B6>(); }, 0xFF);
-    testRegOp<void>(DDRC, 0b10101010, []() { set_ddr<C0, C2, C4, C6>(); }, 0xFF);
-    testRegOp<void>(DDRD, 0b10101010, []() { set_ddr<D0, D2, D4, D6>(); }, 0xFF);
+    testRegOp<void>(DDRA, 0b10101010, []() { set_ddr<LA0, LA2, LA4, LA6>(); }, 0xFF);
+    testRegOp<void>(DDRB, 0b10101010, []() { set_ddr<LB0, LB2, LB4, LB6>(); }, 0xFF);
+    testRegOp<void>(DDRC, 0b10101010, []() { set_ddr<LC0, LC2, LC4, LC6>(); }, 0xFF);
+    testRegOp<void>(DDRD, 0b10101010, []() { set_ddr<LD0, LD2, LD4, LD6>(); }, 0xFF);
 }
 
 TEST(MultipleBitsDDR, ClearSingleGroupDefaultIsPattern) {
-    testRegOp<void>(DDRA, 0b10101010, []() { clear_ddr<A1, A3, A5, A7>(); }, 0);
-    testRegOp<void>(DDRB, 0b10101010, []() { clear_ddr<B1, B3, B5, B7>(); }, 0);
-    testRegOp<void>(DDRC, 0b10101010, []() { clear_ddr<C1, C3, C5, C7>(); }, 0);
-    testRegOp<void>(DDRD, 0b10101010, []() { clear_ddr<D1, D3, D5, D7>(); }, 0);
+    testRegOp<void>(DDRA, 0b10101010, []() { clear_ddr<LA1, LA3, LA5, LA7>(); }, 0);
+    testRegOp<void>(DDRB, 0b10101010, []() { clear_ddr<LB1, LB3, LB5, LB7>(); }, 0);
+    testRegOp<void>(DDRC, 0b10101010, []() { clear_ddr<LC1, LC3, LC5, LC7>(); }, 0);
+    testRegOp<void>(DDRD, 0b10101010, []() { clear_ddr<LD1, LD3, LD5, LD7>(); }, 0);
 }
 
 TEST(MultipleBitsDDR, ClearSingleGroupDefaultIsFilled) {
-    testRegOp<void>(DDRA, 0xFF, []() { clear_ddr<A1, A3, A5, A7>(); }, 0b01010101);
-    testRegOp<void>(DDRB, 0xFF, []() { clear_ddr<B1, B3, B5, B7>(); }, 0b01010101);
-    testRegOp<void>(DDRC, 0xFF, []() { clear_ddr<C1, C3, C5, C7>(); }, 0b01010101);
-    testRegOp<void>(DDRD, 0xFF, []() { clear_ddr<D1, D3, D5, D7>(); }, 0b01010101);
+    testRegOp<void>(DDRA, 0xFF, []() { clear_ddr<LA1, LA3, LA5, LA7>(); }, 0b01010101);
+    testRegOp<void>(DDRB, 0xFF, []() { clear_ddr<LB1, LB3, LB5, LB7>(); }, 0b01010101);
+    testRegOp<void>(DDRC, 0xFF, []() { clear_ddr<LC1, LC3, LC5, LC7>(); }, 0b01010101);
+    testRegOp<void>(DDRD, 0xFF, []() { clear_ddr<LD1, LD3, LD5, LD7>(); }, 0b01010101);
 }
 
 TEST(MultipleBitsDDR, SetMultipleGroupsDefaultIsZero) {
     testMultiRegOp<void>(
             DDRA, DDRB, DDRC, DDRD,
             0, 0, 0, 0,
-            []() { set_ddr<A0, B0, C0, D0, A2, B2, C2, D2, A4, B4, C4, D4, A6, B6, C6, D6>(); },
+            []() { set_ddr<LA0, LB0, LC0, LD0, LA2, LB2, LC2, LD2, LA4, LB4, LC4, LD4, LA6, LB6, LC6, LD6>(); },
             0b01010101, 0b01010101, 0b01010101, 0b01010101
     );
 }
@@ -67,7 +67,7 @@ TEST(MultipleBitsDDR, SetMultipleGroupsDefaultIsPattern) {
     testMultiRegOp<void>(
             DDRA, DDRB, DDRC, DDRD,
             0b10101010, 0b10101010, 0b10101010, 0b10101010,
-            []() { set_ddr<A0, B0, C0, D0, A2, B2, C2, D2, A4, B4, C4, D4, A6, B6, C6, D6>(); },
+            []() { set_ddr<LA0, LB0, LC0, LD0, LA2, LB2, LC2, LD2, LA4, LB4, LC4, LD4, LA6, LB6, LC6, LD6>(); },
             0xFF, 0xFF, 0xFF, 0xFF
     );
 }
@@ -76,7 +76,7 @@ TEST(MultipleBitsDDR, ClearMultipleGroupsDefaultIsPattern) {
     testMultiRegOp<void>(
             DDRA, DDRB, DDRC, DDRD,
             0b10101010, 0b10101010, 0b10101010, 0b10101010,
-            []() { clear_ddr<A1, B1, C1, D1, A3, B3, C3, D3, A5, B5, C5, D5, A7, B7, C7, D7>(); },
+            []() { clear_ddr<LA1, LB1, LC1, LD1, LA3, LB3, LC3, LD3, LA5, LB5, LC5, LD5, LA7, LB7, LC7, LD7>(); },
             0, 0, 0, 0
     );
 }
@@ -85,44 +85,44 @@ TEST(MultipleBitsDDR, ClearMultipleGroupsDefaultIsFilled) {
     testMultiRegOp<void>(
             DDRA, DDRB, DDRC, DDRD,
             0xFF, 0xFF, 0xFF, 0xFF,
-            []() { clear_ddr<A1, B1, C1, D1, A3, B3, C3, D3, A5, B5, C5, D5, A7, B7, C7, D7>(); },
+            []() { clear_ddr<LA1, LB1, LC1, LD1, LA3, LB3, LC3, LD3, LA5, LB5, LC5, LD5, LA7, LB7, LC7, LD7>(); },
             0b01010101, 0b01010101, 0b01010101, 0b01010101
     );
 }
 
 TEST(MultipleBitsPORT, SetSingleGroupDefaultIsZero) {
-    testRegOp<void>(PORTA, 0, []() { set_port<A0, A2, A4, A6>(); }, 0b01010101);
-    testRegOp<void>(PORTB, 0, []() { set_port<B0, B2, B4, B6>(); }, 0b01010101);
-    testRegOp<void>(PORTC, 0, []() { set_port<C0, C2, C4, C6>(); }, 0b01010101);
-    testRegOp<void>(PORTD, 0, []() { set_port<D0, D2, D4, D6>(); }, 0b01010101);
+    testRegOp<void>(PORTA, 0, []() { set_port<LA0, LA2, LA4, LA6>(); }, 0b01010101);
+    testRegOp<void>(PORTB, 0, []() { set_port<LB0, LB2, LB4, LB6>(); }, 0b01010101);
+    testRegOp<void>(PORTC, 0, []() { set_port<LC0, LC2, LC4, LC6>(); }, 0b01010101);
+    testRegOp<void>(PORTD, 0, []() { set_port<LD0, LD2, LD4, LD6>(); }, 0b01010101);
 }
 
 TEST(MultipleBitsPORT, SetSingleGroupDefaultIsPattern) {
-    testRegOp<void>(PORTA, 0b10101010, []() { set_port<A0, A2, A4, A6>(); }, 0xFF);
-    testRegOp<void>(PORTB, 0b10101010, []() { set_port<B0, B2, B4, B6>(); }, 0xFF);
-    testRegOp<void>(PORTC, 0b10101010, []() { set_port<C0, C2, C4, C6>(); }, 0xFF);
-    testRegOp<void>(PORTD, 0b10101010, []() { set_port<D0, D2, D4, D6>(); }, 0xFF);
+    testRegOp<void>(PORTA, 0b10101010, []() { set_port<LA0, LA2, LA4, LA6>(); }, 0xFF);
+    testRegOp<void>(PORTB, 0b10101010, []() { set_port<LB0, LB2, LB4, LB6>(); }, 0xFF);
+    testRegOp<void>(PORTC, 0b10101010, []() { set_port<LC0, LC2, LC4, LC6>(); }, 0xFF);
+    testRegOp<void>(PORTD, 0b10101010, []() { set_port<LD0, LD2, LD4, LD6>(); }, 0xFF);
 }
 
 TEST(MultipleBitsPORT, ClearSingleGroupDefaultIsPattern) {
-    testRegOp<void>(PORTA, 0b10101010, []() { clear_port<A1, A3, A5, A7>(); }, 0);
-    testRegOp<void>(PORTB, 0b10101010, []() { clear_port<B1, B3, B5, B7>(); }, 0);
-    testRegOp<void>(PORTC, 0b10101010, []() { clear_port<C1, C3, C5, C7>(); }, 0);
-    testRegOp<void>(PORTD, 0b10101010, []() { clear_port<D1, D3, D5, D7>(); }, 0);
+    testRegOp<void>(PORTA, 0b10101010, []() { clear_port<LA1, LA3, LA5, LA7>(); }, 0);
+    testRegOp<void>(PORTB, 0b10101010, []() { clear_port<LB1, LB3, LB5, LB7>(); }, 0);
+    testRegOp<void>(PORTC, 0b10101010, []() { clear_port<LC1, LC3, LC5, LC7>(); }, 0);
+    testRegOp<void>(PORTD, 0b10101010, []() { clear_port<LD1, LD3, LD5, LD7>(); }, 0);
 }
 
 TEST(MultipleBitsPORT, ClearSingleGroupDefaultIsFilled) {
-    testRegOp<void>(PORTA, 0xFF, []() { clear_port<A1, A3, A5, A7>(); }, 0b01010101);
-    testRegOp<void>(PORTB, 0xFF, []() { clear_port<B1, B3, B5, B7>(); }, 0b01010101);
-    testRegOp<void>(PORTC, 0xFF, []() { clear_port<C1, C3, C5, C7>(); }, 0b01010101);
-    testRegOp<void>(PORTD, 0xFF, []() { clear_port<D1, D3, D5, D7>(); }, 0b01010101);
+    testRegOp<void>(PORTA, 0xFF, []() { clear_port<LA1, LA3, LA5, LA7>(); }, 0b01010101);
+    testRegOp<void>(PORTB, 0xFF, []() { clear_port<LB1, LB3, LB5, LB7>(); }, 0b01010101);
+    testRegOp<void>(PORTC, 0xFF, []() { clear_port<LC1, LC3, LC5, LC7>(); }, 0b01010101);
+    testRegOp<void>(PORTD, 0xFF, []() { clear_port<LD1, LD3, LD5, LD7>(); }, 0b01010101);
 }
 
 TEST(MultipleBitsPORT, SetMultipleGroupsDefaultIsZero) {
     testMultiRegOp<void>(
             PORTA, PORTB, PORTC, PORTD,
             0, 0, 0, 0,
-            []() { set_port<A0, B0, C0, D0, A2, B2, C2, D2, A4, B4, C4, D4, A6, B6, C6, D6>(); },
+            []() { set_port<LA0, LB0, LC0, LD0, LA2, LB2, LC2, LD2, LA4, LB4, LC4, LD4, LA6, LB6, LC6, LD6>(); },
             0b01010101, 0b01010101, 0b01010101, 0b01010101
     );
 }
@@ -131,7 +131,7 @@ TEST(MultipleBitsPORT, SetMultipleGroupsDefaultIsPattern) {
     testMultiRegOp<void>(
             PORTA, PORTB, PORTC, PORTD,
             0b10101010, 0b10101010, 0b10101010, 0b10101010,
-            []() { set_port<A0, B0, C0, D0, A2, B2, C2, D2, A4, B4, C4, D4, A6, B6, C6, D6>(); },
+            []() { set_port<LA0, LB0, LC0, LD0, LA2, LB2, LC2, LD2, LA4, LB4, LC4, LD4, LA6, LB6, LC6, LD6>(); },
             0xFF, 0xFF, 0xFF, 0xFF
     );
 }
@@ -140,7 +140,7 @@ TEST(MultipleBitsPORT, ClearMultipleGroupsDefaultIsPattern) {
     testMultiRegOp<void>(
             PORTA, PORTB, PORTC, PORTD,
             0b10101010, 0b10101010, 0b10101010, 0b10101010,
-            []() { clear_port<A1, B1, C1, D1, A3, B3, C3, D3, A5, B5, C5, D5, A7, B7, C7, D7>(); },
+            []() { clear_port<LA1, LB1, LC1, LD1, LA3, LB3, LC3, LD3, LA5, LB5, LC5, LD5, LA7, LB7, LC7, LD7>(); },
             0, 0, 0, 0
     );
 }
@@ -149,7 +149,7 @@ TEST(MultipleBitsPORT, ClearMultipleGroupsDefaultIsFilled) {
     testMultiRegOp<void>(
             PORTA, PORTB, PORTC, PORTD,
             0xFF, 0xFF, 0xFF, 0xFF,
-            []() { clear_port<A1, B1, C1, D1, A3, B3, C3, D3, A5, B5, C5, D5, A7, B7, C7, D7>(); },
+            []() { clear_port<LA1, LB1, LC1, LD1, LA3, LB3, LC3, LD3, LA5, LB5, LC5, LD5, LA7, LB7, LC7, LD7>(); },
             0b01010101, 0b01010101, 0b01010101, 0b01010101
     );
 }

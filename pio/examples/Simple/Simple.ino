@@ -9,32 +9,32 @@
 #include "pio.h"
 
 // define a fellow LED pin
-#define LED    B5
+#define LED    LB5
 
 // define a button pin
-#define BUTTON D2
+#define BUTTON LD2
 
 void setup() {
     // set the pin directions
-    dMode(LED, OUT);
-    dMode(BUTTON, IN);
+    set_ddr<LED>();
+    clear_ddr<BUTTON>();
     
     // activate the internal pullup resistor for the button
-    dWrite(BUTTON, HIGH);
+    set_port<BUTTON>();
     
     // turn the LED on
-    dWrite(LED, HIGH);
+    set_port<LED>();
     
     // wait, until button gets pressed (to ground)
-    while(dRead(BUTTON))
+    while(get_pin<BUTTON>())
         delay(1);
 }
 
 
 void loop() {
     // blink now LED
-    dWrite(LED, LOW);
+    clear_port<LED>();
     delay(250);
-    dWrite(LED, HIGH);
+    set_port<LED>();
     delay(250);
 }

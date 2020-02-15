@@ -1,8 +1,7 @@
 #ifndef PIO_LINKEDLIST_HPP
 #define PIO_LINKEDLIST_HPP
 
-#include <utility>
-#include "mem.hpp"
+#include "mem.h"
 
 #ifndef AVR
 
@@ -10,8 +9,8 @@
 
 #endif
 
-#include "io.hpp"
-#include "conditional.hpp"
+#include "io.h"
+#include "conditional.h"
 
 /**
  * constructors for a linkedlist
@@ -54,8 +53,8 @@ struct cons {
         XS().port_clear();
     }
 
-    static constexpr decltype(std::declval<X>().pin_get()) pin_get() {
-        return static_cast<decltype(std::declval<X>().pin_get())>(X().pin_get() | XS().pin_get());
+    static constexpr PIN_T pin_get() {
+        return static_cast<PIN_T>(X().pin_get() | XS().pin_get());
     }
 
 #ifndef AVR

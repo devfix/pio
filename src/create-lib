@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# cd into project root directory
+cd "$(dirname "$0")/../"
+
+cp src/pio.* pio/src/
+rm -f pio.zip
+zip -qrT pio.zip pio

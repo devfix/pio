@@ -1,7 +1,7 @@
 #ifndef PIO_LIBRARY_HPP
 #define PIO_LIBRARY_HPP
 
-#include "concat.hpp"
+#include "concat.h"
 
 template<typename ... PINS>
 void set_ddr()
@@ -64,7 +64,7 @@ struct clear_port_t
 };
 
 template<typename PIN, typename ... PINS>
-constexpr decltype(std::declval<PIN>().pin_get()) get_pin()
+constexpr PIN_T get_pin()
 {
     return concat_t<sort_t<build_t<PIN, PINS...>>>().pin_get();
 };
