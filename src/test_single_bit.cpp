@@ -1,11 +1,12 @@
 #include <gtest/gtest.h>
+#include <type_traits>
 #include "pio.hpp"
 #include "map.hpp"
 
 template<typename T, template<typename ...> typename F, typename R>
 struct GenericRegisterTest
 {
-	explicit  GenericRegisterTest(R& reg, R init, R expected)
+	explicit GenericRegisterTest(R& reg, R init, R expected)
 	{
 		reg = init;
 		F<T>();
@@ -20,10 +21,24 @@ void genericGroupTest(decltype(DDRA)& ddr, decltype(PORTA)& port, decltype(PINA)
 	GenericRegisterTest<T, set_ddr_t, decltype(DDRA)>(ddr, static_cast<decltype(DDRA)>(~T::LEAD), 0xFF);
 	GenericRegisterTest<T, set_ddr_t, decltype(DDRA)>(ddr, static_cast<decltype(DDRA)>(T::LEAD>>1), static_cast<decltype(DDRA)>(T::LEAD | (T::LEAD>>1)));
 	GenericRegisterTest<T, set_ddr_t, decltype(DDRA)>(ddr, static_cast<decltype(DDRA)>(T::LEAD<<1), static_cast<decltype(DDRA)>(T::LEAD | (T::LEAD<<1)));
+
 	GenericRegisterTest<T, set_port_t, decltype(PORTA)>(port, 0, T::LEAD);
 	GenericRegisterTest<T, set_port_t, decltype(PORTA)>(port, static_cast<decltype(PORTA)>(~T::LEAD), 0xFF);
 	GenericRegisterTest<T, set_port_t, decltype(PORTA)>(port, static_cast<decltype(PORTA)>(T::LEAD>>1), static_cast<decltype(DDRA)>(T::LEAD | (T::LEAD>>1)));
 	GenericRegisterTest<T, set_port_t, decltype(PORTA)>(port, static_cast<decltype(PORTA)>(T::LEAD<<1), static_cast<decltype(DDRA)>(T::LEAD | (T::LEAD<<1)));
+
+	pin = 0;
+    EXPECT_EQ(get_pin<T>(), 0);
+
+    pin = static_cast<std::remove_reference<decltype(pin)>::type>(T::LEAD >> 1);
+    EXPECT_EQ(get_pin<T>(), 0);
+
+    pin = static_cast<std::remove_reference<decltype(pin)>::type>(T::LEAD << 1);
+    EXPECT_EQ(get_pin<T>(), 0);
+
+    pin = T::LEAD;
+    EXPECT_EQ(get_pin<T>(), pin);
+
 };
 
 template<typename T>

@@ -63,4 +63,10 @@ struct clear_port_t
 	}
 };
 
+template<typename PIN, typename ... PINS>
+constexpr decltype(std::declval<PIN>().pin_get()) get_pin()
+{
+    return concat_t<sort_t<build_t<PIN, PINS...>>>().pin_get();
+};
+
 #endif // PIO_LIBRARY_HPP

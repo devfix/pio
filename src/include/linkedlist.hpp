@@ -1,6 +1,7 @@
 #ifndef PIO_LINKEDLIST_HPP
 #define PIO_LINKEDLIST_HPP
 
+#include <utility>
 #include "mem.hpp"
 
 #ifndef AVR
@@ -21,6 +22,7 @@ struct nil {
     FORCE_INLINE static void ddr_clear() {}
     FORCE_INLINE static void port_set() {}
     FORCE_INLINE static void port_clear() {}
+    static constexpr uint8_t pin_get() { return 0; }
 
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const nil &) {
@@ -50,6 +52,10 @@ struct cons {
     FORCE_INLINE static void port_clear() {
         X().port_clear();
         XS().port_clear();
+    }
+
+    static constexpr decltype(std::declval<X>().pin_get()) pin_get() {
+        return static_cast<decltype(std::declval<X>().pin_get())>(X().pin_get() | XS().pin_get());
     }
 
 #ifndef AVR

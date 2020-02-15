@@ -83,6 +83,7 @@ extern std::uint8_t PINF;
 #endif // PIO_IO_HPP
 #ifndef PIO_LINKEDLIST_HPP
 #define PIO_LINKEDLIST_HPP
+#include <utility>
 #ifndef AVR
 #include <ostream>
 #endif
@@ -94,6 +95,7 @@ struct nil {
     FORCE_INLINE static void ddr_clear() {}
     FORCE_INLINE static void port_set() {}
     FORCE_INLINE static void port_clear() {}
+    static constexpr uint8_t pin_get() { return 0; }
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const nil &) {
         return os;
@@ -117,6 +119,9 @@ struct cons {
     FORCE_INLINE static void port_clear() {
         X().port_clear();
         XS().port_clear();
+    }
+    static constexpr decltype(std::declval<X>().pin_get()) pin_get() {
+        return static_cast<decltype(std::declval<X>().pin_get())>(X().pin_get() | XS().pin_get());
     }
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const cons<X, XS> &) {
@@ -209,6 +214,7 @@ struct pio_pin<'A', L> {
     FORCE_INLINE static void ddr_clear() { DDRA &= ~L; }
     FORCE_INLINE static void port_set() { PORTA |= L; }
     FORCE_INLINE static void port_clear() { PORTA &= ~L; }
+    static constexpr decltype(PINA) pin_get() { return PINA & L; }
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "A" << (int)L << " ";
@@ -224,6 +230,7 @@ struct pio_pin<'B', L> {
     FORCE_INLINE static void ddr_clear() { DDRB &= ~L; }
     FORCE_INLINE static void port_set() { PORTB |= L; }
     FORCE_INLINE static void port_clear() { PORTB &= ~L; }
+    static constexpr decltype(PINB) pin_get() { return PINB & L; }
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "B" << (int)L << " ";
@@ -239,6 +246,7 @@ struct pio_pin<'C', L> {
     FORCE_INLINE static void ddr_clear() { DDRC &= ~L; }
     FORCE_INLINE static void port_set() { PORTC |= L; }
     FORCE_INLINE static void port_clear() { PORTC &= ~L; }
+    static constexpr decltype(PINC) pin_get() { return PINC & L; }
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "C" << (int)L << " ";
@@ -254,6 +262,7 @@ struct pio_pin<'D', L> {
     FORCE_INLINE static void ddr_clear() { DDRD &= ~L; }
     FORCE_INLINE static void port_set() { PORTD |= L; }
     FORCE_INLINE static void port_clear() { PORTD &= ~L; }
+    static constexpr decltype(PIND) pin_get() { return PIND & L; }
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "D" << (int)L << " ";
@@ -269,6 +278,7 @@ struct pio_pin<'E', L> {
     FORCE_INLINE static void ddr_clear() { DDRE &= ~L; }
     FORCE_INLINE static void port_set() { PORTE |= L; }
     FORCE_INLINE static void port_clear() { PORTE &= ~L; }
+    static constexpr decltype(PINE) pin_get() { return PINE & L; }
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "E" << (int)L << " ";
@@ -284,6 +294,7 @@ struct pio_pin<'F', L> {
     FORCE_INLINE static void ddr_clear() { DDRF &= ~L; }
     FORCE_INLINE static void port_set() { PORTF |= L; }
     FORCE_INLINE static void port_clear() { PORTF &= ~L; }
+    static constexpr decltype(PINF) pin_get() { return PINF & L; }
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "F" << (int)L << " ";
@@ -424,5 +435,10 @@ struct clear_port_t
 	{
 		clear_port<PINS...>();
 	}
+};
+template<typename PIN, typename ... PINS>
+constexpr decltype(std::declval<PIN>().pin_get()) get_pin()
+{
+    return concat_t<sort_t<build_t<PIN, PINS...>>>().pin_get();
 };
 #endif // PIO_LIBRARY_HPP
