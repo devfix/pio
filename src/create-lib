@@ -15,7 +15,7 @@ done
 
 # create arduino zip library
 cd ..
-cp src/pio.* pio/src/
+mv src/pio.* pio/src/
 rm -f pio.zip
 zip -qrT pio.zip pio
 
