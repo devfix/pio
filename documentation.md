@@ -27,10 +27,10 @@ LA0 and LB2 are distinguishable. So *v* can have these values:
 
 | value | pin states |
 |-------|------------|
-| 0x00  | ¬LB2 ¬LA0  |
-| 0x01  | ¬LB2  LA0  |
-| 0x04  |  LB2 ¬LA0  |
-| 0x05  |  LB2  LA0  |
+| 0x00  | ¬LB2&#x2007;¬LA0  |
+| 0x01  | ¬LB2&#x2007;&#x2007;LA0  |
+| 0x04  | &#x2007;LB2&#x2007;¬LA0  |
+| 0x05  | &#x2007;LB2&#x2007;&#x2007;LA0  |
 
 ```c++
 uint8_t v = get_pin<LA1, LB1>();
@@ -39,5 +39,5 @@ LA1 and LB1 are not distinguishable:
 get
 | value | pin states |
 |-------|------------|
-| 0x00  | ¬LB1 ¬LA1  |
-| 0x02  | ¬LB1  LA1  **or** LB1 ¬LA1 **or** LB1 LA1 |
+| 0x00  | ¬LB1&#x2007;¬LA1  |
+| 0x02  | ¬LB1&#x2007;&#x2007;LA1  **or** LB1&#x2007;¬LA1 **or** LB1&#x2007;&#x2007;LA1 |
