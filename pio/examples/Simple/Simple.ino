@@ -9,10 +9,10 @@
 #include "pio.h"
 
 // define a fellow LED pin
-#define LED    LB5
+using LED = LB5;
 
 // define a button pin
-#define BUTTON LD2
+using BUTTON = LD2;
 
 void setup() {
     // set the pin directions
