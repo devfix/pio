@@ -1,9 +1,9 @@
 #ifndef PIO_IO_HPP
 #define PIO_IO_HPP
 
-using DDR_T = unsigned char;
-using PORT_T = unsigned char;
-using PIN_T = unsigned char;
+using DDR_T = volatile unsigned char;
+using PORT_T = volatile unsigned char;
+using PIN_T = volatile unsigned char;
 
 #ifdef AVR
 

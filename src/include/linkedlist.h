@@ -21,7 +21,7 @@ struct nil {
     FORCE_INLINE static void ddr_clear() {}
     FORCE_INLINE static void port_set() {}
     FORCE_INLINE static void port_clear() {}
-    static constexpr uint8_t pin_get() { return 0; }
+    static constexpr PIN_T pin_get() { return 0; }
 
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const nil &) {
@@ -32,29 +32,28 @@ struct nil {
 
 template<typename X, typename XS>
 struct cons {
-
     FORCE_INLINE static void ddr_set() {
-        X().ddr_set();
+        *X::DDR |= X::LEAD;
         XS().ddr_set();
     }
 
     FORCE_INLINE static void ddr_clear() {
-        X().ddr_clear();
+        *X::DDR &= ~X::LEAD;
         XS().ddr_clear();
     }
 
     FORCE_INLINE static void port_set() {
-        X().port_set();
+        *X::PORT |= X::LEAD;
         XS().port_set();
     }
 
     FORCE_INLINE static void port_clear() {
-        X().port_clear();
+        *X::PORT &= ~X::LEAD;
         XS().port_clear();
     }
 
     static constexpr PIN_T pin_get() {
-        return static_cast<PIN_T>(X().pin_get() | XS().pin_get());
+        return static_cast<PIN_T>((*X::PIN & X::LEAD) | XS().pin_get());
     }
 
 #ifndef AVR

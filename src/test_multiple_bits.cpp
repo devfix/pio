@@ -152,6 +152,7 @@ TEST(MultipleBitsPORT, ClearMultipleGroupsDefaultIsFilled) {
             []() { clear_port<LA1, LB1, LC1, LD1, LA3, LB3, LC3, LD3, LA5, LB5, LC5, LD5, LA7, LB7, LC7, LD7>(); },
             0b01010101, 0b01010101, 0b01010101, 0b01010101
     );
+    using LED = LA0;
 }
 
 template<typename R, typename T, typename V>

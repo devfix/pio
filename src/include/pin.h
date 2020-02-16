@@ -15,11 +15,9 @@ struct pio_pin;
 template<unsigned char L>
 struct pio_pin<'A', L> {
 	static constexpr decltype(L) LEAD = L;
-    FORCE_INLINE static void ddr_set() { DDRA |= L; }
-    FORCE_INLINE static void ddr_clear() { DDRA &= ~L; }
-    FORCE_INLINE static void port_set() { PORTA |= L; }
-    FORCE_INLINE static void port_clear() { PORTA &= ~L; }
-    static constexpr PIN_T pin_get() { return PINA & L; }
+    static constexpr DDR_T* DDR = &DDRA;
+    static constexpr PORT_T* PORT = &PORTA;
+    static constexpr PIN_T* PIN = &PINA;
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "A" << (int)L << " ";
@@ -33,11 +31,9 @@ struct pio_pin<'A', L> {
 template<unsigned char L>
 struct pio_pin<'B', L> {
 	static constexpr decltype(L) LEAD = L;
-    FORCE_INLINE static void ddr_set() { DDRB |= L; }
-    FORCE_INLINE static void ddr_clear() { DDRB &= ~L; }
-    FORCE_INLINE static void port_set() { PORTB |= L; }
-    FORCE_INLINE static void port_clear() { PORTB &= ~L; }
-    static constexpr PIN_T pin_get() { return PINB & L; }
+    static constexpr DDR_T* DDR = &DDRB;
+    static constexpr PORT_T* PORT = &PORTB;
+    static constexpr PIN_T* PIN = &PINB;
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "B" << (int)L << " ";
@@ -51,11 +47,9 @@ struct pio_pin<'B', L> {
 template<unsigned char L>
 struct pio_pin<'C', L> {
 	static constexpr decltype(L) LEAD = L;
-    FORCE_INLINE static void ddr_set() { DDRC |= L; }
-    FORCE_INLINE static void ddr_clear() { DDRC &= ~L; }
-    FORCE_INLINE static void port_set() { PORTC |= L; }
-    FORCE_INLINE static void port_clear() { PORTC &= ~L; }
-    static constexpr PIN_T pin_get() { return PINC & L; }
+    static constexpr DDR_T* DDR = &DDRC;
+    static constexpr PORT_T* PORT = &PORTC;
+    static constexpr PIN_T* PIN = &PINC;
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "C" << (int)L << " ";
@@ -69,11 +63,9 @@ struct pio_pin<'C', L> {
 template<unsigned char L>
 struct pio_pin<'D', L> {
 	static constexpr decltype(L) LEAD = L;
-    FORCE_INLINE static void ddr_set() { DDRD |= L; }
-    FORCE_INLINE static void ddr_clear() { DDRD &= ~L; }
-    FORCE_INLINE static void port_set() { PORTD |= L; }
-    FORCE_INLINE static void port_clear() { PORTD &= ~L; }
-    static constexpr PIN_T pin_get() { return PIND & L; }
+    static constexpr DDR_T* DDR = &DDRD;
+    static constexpr PORT_T* PORT = &PORTD;
+    static constexpr PIN_T* PIN = &PIND;
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "D" << (int)L << " ";
@@ -87,11 +79,9 @@ struct pio_pin<'D', L> {
 template<unsigned char L>
 struct pio_pin<'E', L> {
 	static constexpr decltype(L) LEAD = L;
-    FORCE_INLINE static void ddr_set() { DDRE |= L; }
-    FORCE_INLINE static void ddr_clear() { DDRE &= ~L; }
-    FORCE_INLINE static void port_set() { PORTE |= L; }
-    FORCE_INLINE static void port_clear() { PORTE &= ~L; }
-    static constexpr PIN_T pin_get() { return PINE & L; }
+    static constexpr DDR_T* DDR = &DDRE;
+    static constexpr PORT_T* PORT = &PORTE;
+    static constexpr PIN_T* PIN = &PINE;
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "E" << (int)L << " ";
@@ -105,11 +95,9 @@ struct pio_pin<'E', L> {
 template<unsigned char L>
 struct pio_pin<'F', L> {
 	static constexpr decltype(L) LEAD = L;
-    FORCE_INLINE static void ddr_set() { DDRF |= L; }
-    FORCE_INLINE static void ddr_clear() { DDRF &= ~L; }
-    FORCE_INLINE static void port_set() { PORTF |= L; }
-    FORCE_INLINE static void port_clear() { PORTF &= ~L; }
-    static constexpr PIN_T pin_get() { return PINF & L; }
+    static constexpr DDR_T* DDR = &DDRF;
+    static constexpr PORT_T* PORT = &PORTF;
+    static constexpr PIN_T* PIN = &PINF;
 #ifndef AVR
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "F" << (int)L << " ";

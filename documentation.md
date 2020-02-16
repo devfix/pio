@@ -40,3 +40,34 @@ LA1 and LB1 are not distinguishable:
 |-------|------------|
 | 0x00  | ¬LB1&#x2007;¬LA1  |
 | 0x02  | ¬LB1&#x2007;&#x2007;LA1&#x2007;&#x2007;**or**&#x2007;&#x2007;LB1&#x2007;¬LA1&#x2007;&#x2007;**or**&#x2007;&#x2007;LB1&#x2007;&#x2007;LA1 |
+
+## Pin Meta Access
+
+### Registers
+
+#### PIN::DDR
+Supplies a pointer to the pin's ddr register.
+#### PIN::PORT
+Supplies a pointer to the pin's port register.
+#### PIN::PIN
+Supplies a pointer to the pin's pin register.
+
+Example:
+```c++
+using LED = LA0;
+using BUTTON = LD2;
+LED::DDR // pointer to DDRA
+BUTTON::PORT // pointer to PORTD
+BUTTON::PIN // pointer to PIND
+```
+
+### Lead
+
+#### PIN::LEAD
+Gives the lead value of the pin.
+
+Example:
+```c++
+using LED = LA5;
+LED::LEAD // gives 0x20 (2⁵)
+```
