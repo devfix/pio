@@ -52,5 +52,5 @@ Download the library archive [pio.zip][pio.zip].
 In Arduino, go to *Sketch &rarr; Include Library &rarr; Add .ZIP Library...* and select the pio.zip archive.  
 You can find examples under *File &rarr; Examples &rarr; PIO*.
 
-## Full Documentation
+## Documentation
 ... can be found [here][documentation].
