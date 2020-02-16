@@ -44,15 +44,13 @@ set_port<LED>();
 ## Installation
 
 ### Pure AVR project
-Copy the latest [pio.h](pio.h) into your project source folder and include it.  
+Copy the latest [pio.h][pio.h] into your project source folder and include it.  
 That's it.
 
 ### Arduino project
-Download the library archive [pio.zip](pio.zip).  
+Download the library archive [pio.zip][pio.zip].  
 In Arduino, go to *Sketch &rarr; Include Library &rarr; Add .ZIP Library...* and select the pio.zip archive.  
 You can find examples under *File &rarr; Examples &rarr; PIO*.
 
-## Examples
-
-### Full Documentation
-... can be found [here](documentation).
+## Full Documentation
+... can be found [here][documentation].
