@@ -8,7 +8,7 @@
  *
  *      Avr Pin I/O Library
  *
- *    ~ version 3.0.0
+ *    ~ version 3.0.1
  *    ~ written by Jonas Höfer, Tristan Krause
  *    ~ visit github.com/devfix/pio
  *

@@ -3,7 +3,7 @@
 
 #include "mem.h"
 
-#ifndef AVR
+#ifndef __AVR__
 
 #include <ostream>
 
@@ -23,7 +23,7 @@ struct nil {
     FORCE_INLINE static void port_clear() {}
     static constexpr PIN_T pin_get() { return 0; }
 
-#ifndef AVR
+#ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const nil &) {
         return os;
     }
@@ -56,7 +56,7 @@ struct cons {
         return static_cast<PIN_T>((*X::PIN & X::LEAD) | XS().pin_get());
     }
 
-#ifndef AVR
+#ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const cons<X, XS> &) {
         return os << X() << " " << XS();
     }

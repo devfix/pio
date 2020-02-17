@@ -45,6 +45,7 @@ set_port<LED>();
 
 ### Pure AVR project
 Copy the latest [pio.h][pio.h] into your project source folder and include it.  
+Make sure to compile with c++ 11 (*-std=c++11*)  
 That's it.
 
 ### Arduino project

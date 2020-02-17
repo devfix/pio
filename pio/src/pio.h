@@ -8,7 +8,7 @@
  *
  *      Avr Pin I/O Library
  *
- *    ~ version 3.0.0
+ *    ~ version 3.0.1
  *    ~ written by Jonas Höfer, Tristan Krause
  *    ~ visit github.com/devfix/pio
  *
@@ -31,7 +31,7 @@ using conditional_t = typename conditional<B, T, F>::type;
 #endif // PIO_CONDITIONAL_HPP
 #ifndef PIO_MEM_HPP
 #define PIO_MEM_HPP
-#ifdef AVR
+#ifdef __AVR__
 #define FORCE_INLINE __attribute__((always_inline)) inline
 #else
 #define FORCE_INLINE inline
@@ -42,7 +42,7 @@ using conditional_t = typename conditional<B, T, F>::type;
 using DDR_T = volatile unsigned char;
 using PORT_T = volatile unsigned char;
 using PIN_T = volatile unsigned char;
-#ifdef AVR
+#ifdef __AVR__
 #include <avr/io.h>
 #else
 #include <cstdint>
@@ -86,7 +86,7 @@ extern PIN_T PINF;
 #endif // PIO_IO_HPP
 #ifndef PIO_LINKEDLIST_HPP
 #define PIO_LINKEDLIST_HPP
-#ifndef AVR
+#ifndef __AVR__
 #include <ostream>
 #endif
 /**
@@ -98,7 +98,7 @@ struct nil {
     FORCE_INLINE static void port_set() {}
     FORCE_INLINE static void port_clear() {}
     static constexpr PIN_T pin_get() { return 0; }
-#ifndef AVR
+#ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const nil &) {
         return os;
     }
@@ -125,7 +125,7 @@ struct cons {
     static constexpr PIN_T pin_get() {
         return static_cast<PIN_T>((*X::PIN & X::LEAD) | XS().pin_get());
     }
-#ifndef AVR
+#ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const cons<X, XS> &) {
         return os << X() << " " << XS();
     }
@@ -215,7 +215,7 @@ struct pio_pin<'A', L> {
     static constexpr DDR_T* DDR = &DDRA;
     static constexpr PORT_T* PORT = &PORTA;
     static constexpr PIN_T* PIN = &PINA;
-#ifndef AVR
+#ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "A" << (int)L << " ";
     }
@@ -229,7 +229,7 @@ struct pio_pin<'B', L> {
     static constexpr DDR_T* DDR = &DDRB;
     static constexpr PORT_T* PORT = &PORTB;
     static constexpr PIN_T* PIN = &PINB;
-#ifndef AVR
+#ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "B" << (int)L << " ";
     }
@@ -243,7 +243,7 @@ struct pio_pin<'C', L> {
     static constexpr DDR_T* DDR = &DDRC;
     static constexpr PORT_T* PORT = &PORTC;
     static constexpr PIN_T* PIN = &PINC;
-#ifndef AVR
+#ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "C" << (int)L << " ";
     }
@@ -257,7 +257,7 @@ struct pio_pin<'D', L> {
     static constexpr DDR_T* DDR = &DDRD;
     static constexpr PORT_T* PORT = &PORTD;
     static constexpr PIN_T* PIN = &PIND;
-#ifndef AVR
+#ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "D" << (int)L << " ";
     }
@@ -271,7 +271,7 @@ struct pio_pin<'E', L> {
     static constexpr DDR_T* DDR = &DDRE;
     static constexpr PORT_T* PORT = &PORTE;
     static constexpr PIN_T* PIN = &PINE;
-#ifndef AVR
+#ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "E" << (int)L << " ";
     }
@@ -285,7 +285,7 @@ struct pio_pin<'F', L> {
     static constexpr DDR_T* DDR = &DDRF;
     static constexpr PORT_T* PORT = &PORTF;
     static constexpr PIN_T* PIN = &PINF;
-#ifndef AVR
+#ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "F" << (int)L << " ";
     }

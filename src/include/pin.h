@@ -18,7 +18,7 @@ struct pio_pin<'A', L> {
     static constexpr DDR_T* DDR = &DDRA;
     static constexpr PORT_T* PORT = &PORTA;
     static constexpr PIN_T* PIN = &PINA;
-#ifndef AVR
+#ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "A" << (int)L << " ";
     }
@@ -34,7 +34,7 @@ struct pio_pin<'B', L> {
     static constexpr DDR_T* DDR = &DDRB;
     static constexpr PORT_T* PORT = &PORTB;
     static constexpr PIN_T* PIN = &PINB;
-#ifndef AVR
+#ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "B" << (int)L << " ";
     }
@@ -50,7 +50,7 @@ struct pio_pin<'C', L> {
     static constexpr DDR_T* DDR = &DDRC;
     static constexpr PORT_T* PORT = &PORTC;
     static constexpr PIN_T* PIN = &PINC;
-#ifndef AVR
+#ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "C" << (int)L << " ";
     }
@@ -66,7 +66,7 @@ struct pio_pin<'D', L> {
     static constexpr DDR_T* DDR = &DDRD;
     static constexpr PORT_T* PORT = &PORTD;
     static constexpr PIN_T* PIN = &PIND;
-#ifndef AVR
+#ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "D" << (int)L << " ";
     }
@@ -82,7 +82,7 @@ struct pio_pin<'E', L> {
     static constexpr DDR_T* DDR = &DDRE;
     static constexpr PORT_T* PORT = &PORTE;
     static constexpr PIN_T* PIN = &PINE;
-#ifndef AVR
+#ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "E" << (int)L << " ";
     }
@@ -98,7 +98,7 @@ struct pio_pin<'F', L> {
     static constexpr DDR_T* DDR = &DDRF;
     static constexpr PORT_T* PORT = &PORTF;
     static constexpr PIN_T* PIN = &PINF;
-#ifndef AVR
+#ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "F" << (int)L << " ";
     }

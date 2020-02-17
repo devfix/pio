@@ -1,6 +1,6 @@
 #include "include/library.h"
 
-#ifndef AVR
+#ifndef __AVR__
 
 DDR_T DDRA{};
 DDR_T DDRB{};

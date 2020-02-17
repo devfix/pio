@@ -5,7 +5,7 @@ using DDR_T = volatile unsigned char;
 using PORT_T = volatile unsigned char;
 using PIN_T = volatile unsigned char;
 
-#ifdef AVR
+#ifdef __AVR__
 
 #include <avr/io.h>
 
