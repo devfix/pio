@@ -14,6 +14,8 @@ Configures several pins as input pins.
 Sets the state of the pins to high (output pins) or enables the pull-up resistors of the pins (input pins).
 #### clear_port<PIN0, PIN1, ...>();
 Sets the state of the pins to low (output pins) or disables the pull-up resistors of the pins (input pins).
+#### toggle_port<PIN0, PIN1, ...>();
+Inverts the state of the pins (output pins) or toggles the pull-up resistor between enabled / disabled (input pins).
 
 ### PIN - Pin State Acquisition
 #### get_pin<PIN0, PIN1, ...>();

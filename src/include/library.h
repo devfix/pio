@@ -63,10 +63,26 @@ struct clear_port_t
 	}
 };
 
+template<typename ... PINS>
+void toggle_port()
+{
+    concat_t<sort_t<build_t<PINS...>>>().port_toggle();
+};
+
+template<typename ... PINS>
+struct toggle_port_t
+{
+    toggle_port_t()
+    {
+        toggle_port<PINS...>();
+    }
+};
+
 template<typename PIN, typename ... PINS>
 constexpr PIN_T get_pin()
 {
     return concat_t<sort_t<build_t<PIN, PINS...>>>().pin_get();
 };
+
 
 #endif // PIO_LIBRARY_HPP

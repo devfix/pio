@@ -21,6 +21,7 @@ struct nil {
     FORCE_INLINE static void ddr_clear() {}
     FORCE_INLINE static void port_set() {}
     FORCE_INLINE static void port_clear() {}
+    FORCE_INLINE static void port_toggle() {}
     static constexpr PIN_T pin_get() { return 0; }
 
 #ifndef __AVR__
@@ -50,6 +51,11 @@ struct cons {
     FORCE_INLINE static void port_clear() {
         *X::PORT &= ~X::LEAD;
         XS().port_clear();
+    }
+
+    FORCE_INLINE static void port_toggle() {
+        *X::PORT ^= X::LEAD;
+        XS().port_toggle();
     }
 
     static constexpr PIN_T pin_get() {

@@ -97,6 +97,7 @@ struct nil {
     FORCE_INLINE static void ddr_clear() {}
     FORCE_INLINE static void port_set() {}
     FORCE_INLINE static void port_clear() {}
+    FORCE_INLINE static void port_toggle() {}
     static constexpr PIN_T pin_get() { return 0; }
 #ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const nil &) {
@@ -121,6 +122,10 @@ struct cons {
     FORCE_INLINE static void port_clear() {
         *X::PORT &= ~X::LEAD;
         XS().port_clear();
+    }
+    FORCE_INLINE static void port_toggle() {
+        *X::PORT ^= X::LEAD;
+        XS().port_toggle();
     }
     static constexpr PIN_T pin_get() {
         return static_cast<PIN_T>((*X::PIN & X::LEAD) | XS().pin_get());
@@ -425,6 +430,19 @@ struct clear_port_t
 	{
 		clear_port<PINS...>();
 	}
+};
+template<typename ... PINS>
+void toggle_port()
+{
+    concat_t<sort_t<build_t<PINS...>>>().port_toggle();
+};
+template<typename ... PINS>
+struct toggle_port_t
+{
+    toggle_port_t()
+    {
+        toggle_port<PINS...>();
+    }
 };
 template<typename PIN, typename ... PINS>
 constexpr PIN_T get_pin()
