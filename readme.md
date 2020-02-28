@@ -41,6 +41,40 @@ using LED = LD6;  // this changed
 set_ddr<LED>();
 set_port<LED>();
 ```
+
+## Digging Deeper
+Consider the following more detailed example, it configures the pins PA0, PB2, PD6, PA7, PB0 of an  **atmega32** as an output:
+```c++
+/* (3a) */
+set_ddr<LA0, LB2, LD6, LA7, LB0>();
+```
+With **-O3** the avr-g++ generates this assembly:
+```asm
+; set PA0 and PA7 as output
+in  r24,  0x1A
+ori r24,  lo8(-127)
+out 0x1A, r24
+
+; set PB0 and PB2 as output
+in  r24,  0x17
+ori r24,  lo8(5)
+out 0x17, r24
+
+; set PD6 as output
+sbi 0x11, 6
+```
+The register addresses are:
+
+| register | address |
+|----------|---------|
+| DDRA     | 0x1A    |
+| DDRB     | 0x17    |
+| DDRD     | 0x11    |
+
+Pio *sorted* the pins, *grouped* them by DDR register and *combined* the bits.  
+The generated assembly is in fact the most efficient way to configure the desired output pins, without influencing other pins in the same register.  
+ Writing the assembler-code direcly by hand does not speed up the execution, the c++ code compiles without any overhead.
+
 ## Installation
 
 ### Pure AVR project
