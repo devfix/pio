@@ -47,20 +47,20 @@ LA1 and LB1 are not distinguishable:
 
 ### Registers
 
-#### PIN::DDR
-Supplies a pointer to the pin's ddr register.
-#### PIN::PORT
-Supplies a pointer to the pin's port register.
-#### PIN::PIN
-Supplies a pointer to the pin's pin register.
+#### PIN::ddr()
+Returns a reference to the pin's ddr register.
+#### PIN::port()
+Returns a reference to the pin's port register.
+#### PIN::pin()
+Returns a reference to the pin's pin register.
 
 Example:
 ```c++
 using LED = LA0;
 using BUTTON = LD2;
-LED::DDR // pointer to DDRA
-BUTTON::PORT // pointer to PORTD
-BUTTON::PIN // pointer to PIND
+LED::ddr() // equals DDRA
+BUTTON::port() // equals PORTD
+BUTTON::pin() // equals PIND
 ```
 
 ### Lead
