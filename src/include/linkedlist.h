@@ -59,7 +59,7 @@ struct cons {
     }
 
     static constexpr PIN_T pin_get() {
-        return static_cast<PIN_T>((X::pin_get) | XS().pin_get());
+        return static_cast<PIN_T>(X::pin_get() | XS().pin_get());
     }
 
 #ifndef __AVR__
