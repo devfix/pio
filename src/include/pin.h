@@ -15,9 +15,15 @@ struct pio_pin;
 template<unsigned char L>
 struct pio_pin<'A', L> {
 	static constexpr decltype(L) LEAD = L;
-    static constexpr DDR_T* DDR = &DDRA;
-    static constexpr PORT_T* PORT = &PORTA;
-    static constexpr PIN_T* PIN = &PINA;
+	static FORCE_INLINE DDR_T& ddr() { return DDRA; }
+	static FORCE_INLINE PORT_T& port() { return PORTA; }
+	static FORCE_INLINE PIN_T& pin() { return PINA; }
+	static FORCE_INLINE void ddr_set() { ddr() |= L; }
+	static FORCE_INLINE void ddr_clear() { ddr() &= ~L; }
+	static FORCE_INLINE void port_set() { port() |= L; }
+	static FORCE_INLINE void port_clear() { port() &= ~L; }
+	static FORCE_INLINE void port_toggle() { port() ^= L; }
+	static FORCE_INLINE PIN_T pin_get() { return pin() & L; }
 #ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "A" << (int)L << " ";
@@ -31,9 +37,15 @@ struct pio_pin<'A', L> {
 template<unsigned char L>
 struct pio_pin<'B', L> {
 	static constexpr decltype(L) LEAD = L;
-    static constexpr DDR_T* DDR = &DDRB;
-    static constexpr PORT_T* PORT = &PORTB;
-    static constexpr PIN_T* PIN = &PINB;
+	static FORCE_INLINE DDR_T& ddr() { return DDRB; }
+	static FORCE_INLINE PORT_T& port() { return PORTB; }
+	static FORCE_INLINE PIN_T& pin() { return PINB; }
+	static FORCE_INLINE void ddr_set() { ddr() |= L; }
+	static FORCE_INLINE void ddr_clear() { ddr() &= ~L; }
+	static FORCE_INLINE void port_set() { port() |= L; }
+	static FORCE_INLINE void port_clear() { port() &= ~L; }
+	static FORCE_INLINE void port_toggle() { port() ^= L; }
+	static FORCE_INLINE PIN_T pin_get() { return pin() & L; }
 #ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "B" << (int)L << " ";
@@ -47,9 +59,15 @@ struct pio_pin<'B', L> {
 template<unsigned char L>
 struct pio_pin<'C', L> {
 	static constexpr decltype(L) LEAD = L;
-    static constexpr DDR_T* DDR = &DDRC;
-    static constexpr PORT_T* PORT = &PORTC;
-    static constexpr PIN_T* PIN = &PINC;
+	static FORCE_INLINE DDR_T& ddr() { return DDRC; }
+	static FORCE_INLINE PORT_T& port() { return PORTC; }
+	static FORCE_INLINE PIN_T& pin() { return PINC; }
+	static FORCE_INLINE void ddr_set() { ddr() |= L; }
+	static FORCE_INLINE void ddr_clear() { ddr() &= ~L; }
+	static FORCE_INLINE void port_set() { port() |= L; }
+	static FORCE_INLINE void port_clear() { port() &= ~L; }
+	static FORCE_INLINE void port_toggle() { port() ^= L; }
+	static FORCE_INLINE PIN_T pin_get() { return pin() & L; }
 #ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "C" << (int)L << " ";
@@ -63,9 +81,15 @@ struct pio_pin<'C', L> {
 template<unsigned char L>
 struct pio_pin<'D', L> {
 	static constexpr decltype(L) LEAD = L;
-    static constexpr DDR_T* DDR = &DDRD;
-    static constexpr PORT_T* PORT = &PORTD;
-    static constexpr PIN_T* PIN = &PIND;
+	static FORCE_INLINE DDR_T& ddr() { return DDRD; }
+	static FORCE_INLINE PORT_T& port() { return PORTD; }
+	static FORCE_INLINE PIN_T& pin() { return PIND; }
+	static FORCE_INLINE void ddr_set() { ddr() |= L; }
+	static FORCE_INLINE void ddr_clear() { ddr() &= ~L; }
+	static FORCE_INLINE void port_set() { port() |= L; }
+	static FORCE_INLINE void port_clear() { port() &= ~L; }
+	static FORCE_INLINE void port_toggle() { port() ^= L; }
+	static FORCE_INLINE PIN_T pin_get() { return pin() & L; }
 #ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "D" << (int)L << " ";
@@ -79,9 +103,15 @@ struct pio_pin<'D', L> {
 template<unsigned char L>
 struct pio_pin<'E', L> {
 	static constexpr decltype(L) LEAD = L;
-    static constexpr DDR_T* DDR = &DDRE;
-    static constexpr PORT_T* PORT = &PORTE;
-    static constexpr PIN_T* PIN = &PINE;
+	static FORCE_INLINE DDR_T& ddr() { return DDRE; }
+	static FORCE_INLINE PORT_T& port() { return PORTE; }
+	static FORCE_INLINE PIN_T& pin() { return PINE; }
+	static FORCE_INLINE void ddr_set() { ddr() |= L; }
+	static FORCE_INLINE void ddr_clear() { ddr() &= ~L; }
+	static FORCE_INLINE void port_set() { port() |= L; }
+	static FORCE_INLINE void port_clear() { port() &= ~L; }
+	static FORCE_INLINE void port_toggle() { port() ^= L; }
+	static FORCE_INLINE PIN_T pin_get() { return pin() & L; }
 #ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "E" << (int)L << " ";
@@ -95,9 +125,15 @@ struct pio_pin<'E', L> {
 template<unsigned char L>
 struct pio_pin<'F', L> {
 	static constexpr decltype(L) LEAD = L;
-    static constexpr DDR_T* DDR = &DDRF;
-    static constexpr PORT_T* PORT = &PORTF;
-    static constexpr PIN_T* PIN = &PINF;
+	static FORCE_INLINE DDR_T& ddr() { return DDRF; }
+	static FORCE_INLINE PORT_T& port() { return PORTF; }
+	static FORCE_INLINE PIN_T& pin() { return PINF; }
+	static FORCE_INLINE void ddr_set() { ddr() |= L; }
+	static FORCE_INLINE void ddr_clear() { ddr() &= ~L; }
+	static FORCE_INLINE void port_set() { port() |= L; }
+	static FORCE_INLINE void port_clear() { port() &= ~L; }
+	static FORCE_INLINE void port_toggle() { port() ^= L; }
+	static FORCE_INLINE PIN_T pin_get() { return pin() & L; }
 #ifndef __AVR__
     friend std::ostream &operator<<(std::ostream &os, const pio_pin& pin) {
         return os << "F" << (int)L << " ";

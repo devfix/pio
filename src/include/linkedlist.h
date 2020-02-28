@@ -34,32 +34,32 @@ struct nil {
 template<typename X, typename XS>
 struct cons {
     FORCE_INLINE static void ddr_set() {
-        *X::DDR |= X::LEAD;
+        X::ddr_set();
         XS().ddr_set();
     }
 
     FORCE_INLINE static void ddr_clear() {
-        *X::DDR &= ~X::LEAD;
+    	X::ddr_clear();
         XS().ddr_clear();
     }
 
     FORCE_INLINE static void port_set() {
-        *X::PORT |= X::LEAD;
+    	X::port_set();
         XS().port_set();
     }
 
     FORCE_INLINE static void port_clear() {
-        *X::PORT &= ~X::LEAD;
+    	X::port_clear();
         XS().port_clear();
     }
 
     FORCE_INLINE static void port_toggle() {
-        *X::PORT ^= X::LEAD;
+    	X::port_toggle();
         XS().port_toggle();
     }
 
     static constexpr PIN_T pin_get() {
-        return static_cast<PIN_T>((*X::PIN & X::LEAD) | XS().pin_get());
+        return static_cast<PIN_T>((X::pin_get) | XS().pin_get());
     }
 
 #ifndef __AVR__
